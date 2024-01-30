@@ -97,7 +97,7 @@ class LabImageProcessing:
             if image_path is None:
                 root = tk.Tk()
                 root.withdraw()
-                self.image_path = filedialog.askopenfilename(initialdir=os.path.expanduser("~/Pictures"))
+                self.image_path = filedialog.askopenfilename()#initialdir=os.path.expanduser("~/Pictures"))
             else:
                 self.image_path = image_path
             if self.image_path:
@@ -181,11 +181,6 @@ class LabImageProcessing:
             Saturation, and Value). Each channel is then plotted separately using 
             Matplotlib. If no image is currently loaded, an error message is printed.
 
-            Returns
-            -------
-            tuple of (None, str) or None
-                If the image is not loaded, returns (None, "No image"). Otherwise, 
-                returns None after displaying the plots.
             """
             if self.image is None:
                 print("Error: Could not read the image.")
@@ -279,7 +274,7 @@ class LabImageProcessing:
             plt.show()
 
 
-        def plot_image(self, image): 
+        def plot_image(self, image=None): 
             """
             Displays the given image using Matplotlib.
 
@@ -296,13 +291,15 @@ class LabImageProcessing:
             -------
             None
             """
+            if image is None:
+                image=self.image
             # Check if the image is grayscale
             if len(image.shape) == 2:
                 # Convert grayscale image to RGB format
                 image_rgb = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
             else:
                 # If it's already in RGB format, keep it as is
-                image_rgb = image
+                image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
             # Display the image using Matplotlib
             plt.figure(figsize=(8, 8))
@@ -322,9 +319,7 @@ class LabImageProcessing:
             ----------
             image : ndarray, optional
                 The image to be displayed. If None, the current image is used (default is None).
-            title : str, optional
-                The title of the window in which the image is displayed (default is "Image").
-
+            title : str, optionalimsh
             Returns
             -------
             None
@@ -459,7 +454,7 @@ class LabImageProcessing:
         ----------
         original_image : ndarray
             A copy of the original image.
-        roi : tuple or None
+        roi : tuple (Combination of X variables) or None
             The coordinates of the defined region of interest (ROI), if defined.
 
         Methods
@@ -549,7 +544,7 @@ class LabImageProcessing:
 
             Returns
             -------
-            tuple
+            tuple (Combination of X variables)
                 A tuple containing the height and width of the image.
             """
             return self.image.shape[:2]  # Returns (height, width)
@@ -572,10 +567,13 @@ class LabImageProcessing:
 
             Returns
             -------
-            tuple
+            tuple (Combination of X variables)
                 A tuple containing the cropped ROI and the coordinates of the ROI 
-                in the format (x1, y1, x2, y2).
-
+                in the format (x1, y1, x2, y2) (It's another tuple of 4 variables !).
+                So final tuple can be recovered from the function liek this:
+                
+                cropped_ROI, ROI_coordinates = define_image_roi(channel)
+            
             Notes
             -----
             - Click and drag to start drawing the rectangle.
@@ -877,7 +875,7 @@ class LabImageProcessing:
 
             Parameters
             ----------
-            roi_coordinates : tuple
+            roi_coordinates : tuple (Combination of X variables)
                 The coordinates of the ROI in the format (x1, y1, x2, y2).
             original_shape : ndarray
                 The original shape of the image to match the mask size.
@@ -1036,12 +1034,14 @@ class LabImageProcessing:
             window_title = "Press 'Q' to exit"
             cv2.imshow(window_title, image)
 
-            # Wait for the 'Q' key to be pressed to exit
             while True:
-                if cv2.waitKey(1) & 0xFF == ord('q'):
+                # Display the image in a window
+                cv2.imshow(window_title, image)
+
+                # Wait for the 'Q' key to be pressed or check if the window was closed
+                if cv2.waitKey(1) & 0xFF == ord('q') or cv2.getWindowProperty(window_title, cv2.WND_PROP_VISIBLE) < 1:
                     break
 
-            # Destroy all OpenCV windows
             cv2.destroyAllWindows()
 
 

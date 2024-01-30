@@ -167,7 +167,7 @@
             <span class="k">if</span> <span class="n">image_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
                 <span class="n">root</span><span class="o">.</span><span class="n">withdraw</span><span class="p">()</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">image_path</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">askopenfilename</span><span class="p">(</span><span class="n">initialdir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~/Pictures&quot;</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">image_path</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">askopenfilename</span><span class="p">()</span><span class="c1">#initialdir=os.path.expanduser(&quot;~/Pictures&quot;))</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">image_path</span> <span class="o">=</span> <span class="n">image_path</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_path</span><span class="p">:</span>
@@ -251,11 +251,6 @@
 <span class="sd">            Saturation, and Value). Each channel is then plotted separately using </span>
 <span class="sd">            Matplotlib. If no image is currently loaded, an error message is printed.</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">            tuple of (None, str) or None</span>
-<span class="sd">                If the image is not loaded, returns (None, &quot;No image&quot;). Otherwise, </span>
-<span class="sd">                returns None after displaying the plots.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Could not read the image.&quot;</span><span class="p">)</span>
@@ -349,7 +344,7 @@
             <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="LabImageProcessing.ImageVisualization.plot_image"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_image">[docs]</a>        <span class="k">def</span> <span class="nf">plot_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span> 
+<div class="viewcode-block" id="LabImageProcessing.ImageVisualization.plot_image"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_image">[docs]</a>        <span class="k">def</span> <span class="nf">plot_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span> 
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Displays the given image using Matplotlib.</span>
 
@@ -366,13 +361,15 @@
 <span class="sd">            -------</span>
 <span class="sd">            None</span>
 <span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">image</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span>
             <span class="c1"># Check if the image is grayscale</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
                 <span class="c1"># Convert grayscale image to RGB format</span>
                 <span class="n">image_rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_GRAY2RGB</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="c1"># If it&#39;s already in RGB format, keep it as is</span>
-                <span class="n">image_rgb</span> <span class="o">=</span> <span class="n">image</span>
+                <span class="n">image_rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
 
             <span class="c1"># Display the image using Matplotlib</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
@@ -381,29 +378,28 @@
             <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
         
 <div class="viewcode-block" id="LabImageProcessing.ImageVisualization.show_image"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.show_image">[docs]</a>        <span class="k">def</span> <span class="nf">show_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Image&quot;</span><span class="p">):</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Displays the given or current image using OpenCV.</span>
+<span class="w">                </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                Displays the given or current image using OpenCV.</span>
 
-<span class="sd">            If no image is provided, the method uses the current image stored in the class.</span>
-<span class="sd">            The image is displayed in a window with the specified title. The window remains </span>
-<span class="sd">            open until the &#39;Q&#39; key is pressed.</span>
+<span class="sd">                If no image is provided, the method uses the current image stored in the class.</span>
+<span class="sd">                The image is displayed in a window with the specified title. The window remains </span>
+<span class="sd">                open until the &#39;Q&#39; key is pressed.</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">            image : ndarray, optional</span>
-<span class="sd">                The image to be displayed. If None, the current image is used (default is None).</span>
-<span class="sd">            title : str, optional</span>
-<span class="sd">                The title of the window in which the image is displayed (default is &quot;Image&quot;).</span>
+<span class="sd">                Parameters</span>
+<span class="sd">                ----------</span>
+<span class="sd">                image : ndarray, optional (The image to be displayed. If None, the current image is used, default is None).</span>
+<span class="sd">                title : str, optionalimsh</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">            None</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span>
-            <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2"> (Press Q to close this)&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
-            <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-            <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span></div>
+<span class="sd">                Returns</span>
+<span class="sd">                -------</span>
+<span class="sd">                None</span>
+<span class="sd">                &quot;&quot;&quot;</span>
+                <span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span>
+                    
+                <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2"> (Press Q to close this)&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="LabImageProcessing.ImageVisualization.show_image_with_contour"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.show_image_with_contour">[docs]</a>        <span class="k">def</span> <span class="nf">show_image_with_contour</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">contour</span><span class="p">):</span>
 <span class="w">                </span><span class="sd">&quot;&quot;&quot;</span>
@@ -529,7 +525,7 @@
 <span class="sd">        ----------</span>
 <span class="sd">        original_image : ndarray</span>
 <span class="sd">            A copy of the original image.</span>
-<span class="sd">        roi : tuple or None</span>
+<span class="sd">        roi : tuple (Combination of X variables) or None</span>
 <span class="sd">            The coordinates of the defined region of interest (ROI), if defined.</span>
 
 <span class="sd">        Methods</span>
@@ -619,7 +615,7 @@
 
 <span class="sd">            Returns</span>
 <span class="sd">            -------</span>
-<span class="sd">            tuple</span>
+<span class="sd">            tuple (Combination of X variables)</span>
 <span class="sd">                A tuple containing the height and width of the image.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># Returns (height, width)</span></div>
@@ -642,10 +638,13 @@
 
 <span class="sd">            Returns</span>
 <span class="sd">            -------</span>
-<span class="sd">            tuple</span>
+<span class="sd">            tuple (Combination of X variables)</span>
 <span class="sd">                A tuple containing the cropped ROI and the coordinates of the ROI </span>
-<span class="sd">                in the format (x1, y1, x2, y2).</span>
-
+<span class="sd">                in the format (x1, y1, x2, y2) (It&#39;s another tuple of 4 variables !).</span>
+<span class="sd">                So final tuple can be recovered from the function liek this:</span>
+<span class="sd">                </span>
+<span class="sd">                cropped_ROI, ROI_coordinates = define_image_roi(channel)</span>
+<span class="sd">            </span>
 <span class="sd">            Notes</span>
 <span class="sd">            -----</span>
 <span class="sd">            - Click and drag to start drawing the rectangle.</span>
@@ -947,7 +946,7 @@
 
 <span class="sd">            Parameters</span>
 <span class="sd">            ----------</span>
-<span class="sd">            roi_coordinates : tuple</span>
+<span class="sd">            roi_coordinates : tuple (Combination of X variables)</span>
 <span class="sd">                The coordinates of the ROI in the format (x1, y1, x2, y2).</span>
 <span class="sd">            original_shape : ndarray</span>
 <span class="sd">                The original shape of the image to match the mask size.</span>
@@ -1083,7 +1082,7 @@
 
             <span class="c1"># Image dimensions and color (dark blue background)</span>
             <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">640</span><span class="p">,</span> <span class="mi">480</span>
-            <span class="n">blue_color</span> <span class="o">=</span> <span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">139</span><span class="p">)</span>  <span class="c1"># Dark blue in BGR format</span>
+            <span class="n">blue_color</span> <span class="o">=</span> <span class="p">(</span><span class="mi">139</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>  <span class="c1"># Dark blue in BGR format</span>
 
             <span class="c1"># Create a blank image with the blue background</span>
             <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
@@ -1106,12 +1105,14 @@
             <span class="n">window_title</span> <span class="o">=</span> <span class="s2">&quot;Press &#39;Q&#39; to exit&quot;</span>
             <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">window_title</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
 
-            <span class="c1"># Wait for the &#39;Q&#39; key to be pressed to exit</span>
             <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">):</span>
+                <span class="c1"># Display the image in a window</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">window_title</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+
+                <span class="c1"># Wait for the &#39;Q&#39; key to be pressed or check if the window was closed</span>
+                <span class="k">if</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getWindowProperty</span><span class="p">(</span><span class="n">window_title</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">WND_PROP_VISIBLE</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
                     <span class="k">break</span>
 
-            <span class="c1"># Destroy all OpenCV windows</span>
             <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span></div></div></div>
 
 

@@ -5,14 +5,14 @@ This project is developed using Python 3.8. Ensure you have Python 3.8 installed
 
 ## Installation Steps
 
-1. Clone the repository or download the project files to your local machine.Run the following command:
+1. Clone this repository or download the project files to your local machine.Run the following command:
     ```shell
-    git clone https://github.com/sugnite/image_processing_lab.git
+    git clone https://github.com/sugnite/ISAE-Image-Processing-Lab-HAD501.git
     ```
 2. Open a terminal or command prompt and navigate to the directory where the project files are located.
     
     ```shell
-    cd image_processing_lab
+    cd ISAE-Image-Processing-Lab-HAD501
     ```
 
 3. Install the required packages using pip. Run the following command:

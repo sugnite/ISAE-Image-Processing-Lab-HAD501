@@ -320,7 +320,7 @@ selected by the user using mouse events.</p>
 <dl class="simple">
 <dt>original_image<span class="classifier">ndarray</span></dt><dd><p>A copy of the original image.</p>
 </dd>
-<dt>roi<span class="classifier">tuple or None</span></dt><dd><p>The coordinates of the defined region of interest (ROI), if defined.</p>
+<dt>roi<span class="classifier">tuple (Combination of X variables) or None</span></dt><dd><p>The coordinates of the defined region of interest (ROI), if defined.</p>
 </dd>
 </dl>
 </section>
@@ -354,9 +354,11 @@ the ROI is to be defined.</p>
 </section>
 <section id="id10">
 <h5>Returns<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h5>
-<dl class="simple">
-<dt>tuple</dt><dd><p>A tuple containing the cropped ROI and the coordinates of the ROI 
-in the format (x1, y1, x2, y2).</p>
+<dl>
+<dt>tuple (Combination of X variables)</dt><dd><p>A tuple containing the cropped ROI and the coordinates of the ROI 
+in the format (x1, y1, x2, y2) (It’s another tuple of 4 variables !).
+So final tuple can be recovered from the function liek this:</p>
+<p>cropped_ROI, ROI_coordinates = define_image_roi(channel)</p>
 </dd>
 </dl>
 </section>
@@ -416,7 +418,7 @@ and width, and returns them.</p>
 <section id="id15">
 <h5>Returns<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h5>
 <dl class="simple">
-<dt>tuple</dt><dd><p>A tuple containing the height and width of the image.</p>
+<dt>tuple (Combination of X variables)</dt><dd><p>A tuple containing the height and width of the image.</p>
 </dd>
 </dl>
 </section>
@@ -514,14 +516,6 @@ applies the contour, and then merges the channels back.</p>
 then splits these into their respective channels (Red, Green, Blue, Hue,
 Saturation, and Value). Each channel is then plotted separately using 
 Matplotlib. If no image is currently loaded, an error message is printed.</p>
-<section id="id22">
-<h5>Returns<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h5>
-<dl class="simple">
-<dt>tuple of (None, str) or None</dt><dd><p>If the image is not loaded, returns (None, “No image”). Otherwise, 
-returns None after displaying the plots.</p>
-</dd>
-</dl>
-</section>
 </dd></dl>
 
 <dl class="py method">
@@ -531,8 +525,8 @@ returns None after displaying the plots.</p>
 <p>This method calculates and plots the histogram of the provided channel data.
 The histogram shows the distribution of pixel intensity values. Options to 
 add a grid and set the range of x-axis (intensity values) are available.</p>
-<section id="id23">
-<h5>Parameters<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h5>
+<section id="id22">
+<h5>Parameters<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h5>
 <dl class="simple">
 <dt>channel_data<span class="classifier">ndarray</span></dt><dd><p>The channel data (e.g., a color or grayscale channel) for which the 
 histogram is to be plotted.</p>
@@ -545,28 +539,28 @@ histogram is to be plotted.</p>
 </dd>
 </dl>
 </section>
-<section id="id24">
-<h5>Returns<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h5>
+<section id="id23">
+<h5>Returns<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h5>
 <p>None</p>
 </section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_image">
-<span class="sig-name descname"><span class="pre">plot_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.ImageVisualization.plot_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_image" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plot_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.ImageVisualization.plot_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_image" title="Permalink to this definition"></a></dt>
 <dd><p>Displays the given image using Matplotlib.</p>
 <p>This method checks if the image is grayscale and, if so, converts it to RGB
 format before displaying. It uses Matplotlib to plot the image with axis 
 labels and ticks turned off.</p>
-<section id="id25">
-<h5>Parameters<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h5>
+<section id="id24">
+<h5>Parameters<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h5>
 <dl class="simple">
 <dt>image<span class="classifier">ndarray</span></dt><dd><p>The image to be displayed.</p>
 </dd>
 </dl>
 </section>
-<section id="id26">
-<h5>Returns<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h5>
+<section id="id25">
+<h5>Returns<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h5>
 <p>None</p>
 </section>
 </dd></dl>
@@ -578,16 +572,16 @@ labels and ticks turned off.</p>
 <p>This method calculates the histogram of the specified channel, identifies 
 the main peak, and determines its lower and upper bounds. It then plots 
 the histogram and marks the peak bounds with vertical lines.</p>
-<section id="id27">
-<h5>Parameters<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h5>
+<section id="id26">
+<h5>Parameters<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h5>
 <dl class="simple">
 <dt>channel<span class="classifier">ndarray</span></dt><dd><p>The channel data (e.g., a color channel from an image) for which the 
 histogram and peak bounds are to be plotted.</p>
 </dd>
 </dl>
 </section>
-<section id="id28">
-<h5>Returns<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h5>
+<section id="id27">
+<h5>Returns<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h5>
 <p>None</p>
 </section>
 </dd></dl>
@@ -599,17 +593,13 @@ histogram and peak bounds are to be plotted.</p>
 <p>If no image is provided, the method uses the current image stored in the class.
 The image is displayed in a window with the specified title. The window remains 
 open until the ‘Q’ key is pressed.</p>
-<section id="id29">
-<h5>Parameters<a class="headerlink" href="#id29" title="Permalink to this heading"></a></h5>
-<dl class="simple">
-<dt>image<span class="classifier">ndarray, optional</span></dt><dd><p>The image to be displayed. If None, the current image is used (default is None).</p>
-</dd>
-<dt>title<span class="classifier">str, optional</span></dt><dd><p>The title of the window in which the image is displayed (default is “Image”).</p>
-</dd>
-</dl>
+<section id="id28">
+<h5>Parameters<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h5>
+<p>image : ndarray, optional (The image to be displayed. If None, the current image is used, default is None).
+title : str, optionalimsh</p>
 </section>
-<section id="id30">
-<h5>Returns<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h5>
+<section id="id29">
+<h5>Returns<a class="headerlink" href="#id29" title="Permalink to this heading"></a></h5>
 <p>None</p>
 </section>
 </dd></dl>
@@ -621,8 +611,8 @@ open until the ‘Q’ key is pressed.</p>
 <p>This method first calls <cite>get_image_with_contour</cite> to apply the contour to the image
 and then displays the result. The window title indicates that it is showing an 
 image with a contour.</p>
-<section id="id31">
-<h5>Parameters<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h5>
+<section id="id30">
+<h5>Parameters<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h5>
 <dl class="simple">
 <dt>image<span class="classifier">ndarray</span></dt><dd><p>The image to which the contour will be applied.</p>
 </dd>
@@ -630,8 +620,8 @@ image with a contour.</p>
 </dd>
 </dl>
 </section>
-<section id="id32">
-<h5>Returns<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h5>
+<section id="id31">
+<h5>Returns<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h5>
 <p>None</p>
 </section>
 </dd></dl>
@@ -648,8 +638,8 @@ image with a contour.</p>
 dilation on images. A structuring element (kernel) must be set before performing 
 these operations. The class also provides a method to extract mask contours from 
 an image.</p>
-<section id="id33">
-<h4>Attributes<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h4>
+<section id="id32">
+<h4>Attributes<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h4>
 <dl class="simple">
 <dt>image<span class="classifier">ndarray</span></dt><dd><p>The original image for manipulation.</p>
 </dd>
@@ -659,8 +649,8 @@ an image.</p>
 </dd>
 </dl>
 </section>
-<section id="id34">
-<h4>Methods<a class="headerlink" href="#id34" title="Permalink to this heading"></a></h4>
+<section id="id33">
+<h4>Methods<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h4>
 <dl class="simple">
 <dt>set_kernel(size)</dt><dd><p>Sets the structuring element for morphological operations.</p>
 </dd>
@@ -679,22 +669,22 @@ an image.</p>
 <dd><p>Applies dilation to the manipulated image using the set kernel.</p>
 <p>This method dilates the image, typically increasing the size of foreground 
 objects. A kernel must be set before calling this method.</p>
-<section id="id35">
-<h5>Parameters<a class="headerlink" href="#id35" title="Permalink to this heading"></a></h5>
+<section id="id34">
+<h5>Parameters<a class="headerlink" href="#id34" title="Permalink to this heading"></a></h5>
 <dl class="simple">
 <dt>iterations<span class="classifier">int, optional</span></dt><dd><p>The number of times the dilation is applied (default is 1).</p>
 </dd>
 </dl>
 </section>
-<section id="id36">
-<h5>Raises<a class="headerlink" href="#id36" title="Permalink to this heading"></a></h5>
+<section id="id35">
+<h5>Raises<a class="headerlink" href="#id35" title="Permalink to this heading"></a></h5>
 <dl class="simple">
 <dt>ValueError</dt><dd><p>If the kernel is not set prior to calling this method.</p>
 </dd>
 </dl>
 </section>
-<section id="id37">
-<h5>Returns<a class="headerlink" href="#id37" title="Permalink to this heading"></a></h5>
+<section id="id36">
+<h5>Returns<a class="headerlink" href="#id36" title="Permalink to this heading"></a></h5>
 <p>None</p>
 </section>
 </dd></dl>
@@ -705,22 +695,22 @@ objects. A kernel must be set before calling this method.</p>
 <dd><p>Applies erosion to the manipulated image using the set kernel.</p>
 <p>This method erodes the image, which typically reduces the size of the 
 foreground objects. A kernel must be set before calling this method.</p>
-<section id="id38">
-<h5>Parameters<a class="headerlink" href="#id38" title="Permalink to this heading"></a></h5>
+<section id="id37">
+<h5>Parameters<a class="headerlink" href="#id37" title="Permalink to this heading"></a></h5>
 <dl class="simple">
 <dt>iterations<span class="classifier">int, optional</span></dt><dd><p>The number of times the erosion is applied (default is 1).</p>
 </dd>
 </dl>
 </section>
-<section id="id39">
-<h5>Raises<a class="headerlink" href="#id39" title="Permalink to this heading"></a></h5>
+<section id="id38">
+<h5>Raises<a class="headerlink" href="#id38" title="Permalink to this heading"></a></h5>
 <dl class="simple">
 <dt>ValueError</dt><dd><p>If the kernel is not set prior to calling this method.</p>
 </dd>
 </dl>
 </section>
-<section id="id40">
-<h5>Returns<a class="headerlink" href="#id40" title="Permalink to this heading"></a></h5>
+<section id="id39">
+<h5>Returns<a class="headerlink" href="#id39" title="Permalink to this heading"></a></h5>
 <p>None</p>
 </section>
 </dd></dl>
@@ -731,8 +721,8 @@ foreground objects. A kernel must be set before calling this method.</p>
 <dd><p>Returns the current state of the manipulated image.</p>
 <p>This method retrieves the image as it is after applying morphological 
 operations like erosion or dilation.</p>
-<section id="id41">
-<h5>Returns<a class="headerlink" href="#id41" title="Permalink to this heading"></a></h5>
+<section id="id40">
+<h5>Returns<a class="headerlink" href="#id40" title="Permalink to this heading"></a></h5>
 <dl class="simple">
 <dt>ndarray</dt><dd><p>The manipulated image.</p>
 </dd>
@@ -747,8 +737,8 @@ operations like erosion or dilation.</p>
 <p>This method first dilates the image to enhance the contours. It then performs 
 bitwise operations to isolate and return only the contours. The original state 
 of the manipulated image is preserved.</p>
-<section id="id42">
-<h5>Returns<a class="headerlink" href="#id42" title="Permalink to this heading"></a></h5>
+<section id="id41">
+<h5>Returns<a class="headerlink" href="#id41" title="Permalink to this heading"></a></h5>
 <dl class="simple">
 <dt>ndarray</dt><dd><p>The image with only the contours extracted.</p>
 </dd>
@@ -762,16 +752,16 @@ of the manipulated image is preserved.</p>
 <dd><p>Sets the structuring element (kernel) for morphological operations.</p>
 <p>This method initializes the kernel used for erosion and dilation operations. 
 The kernel is a square matrix of the specified size.</p>
-<section id="id43">
-<h5>Parameters<a class="headerlink" href="#id43" title="Permalink to this heading"></a></h5>
+<section id="id42">
+<h5>Parameters<a class="headerlink" href="#id42" title="Permalink to this heading"></a></h5>
 <dl class="simple">
 <dt>size<span class="classifier">int</span></dt><dd><p>The size of the structuring element. Represents both the width and height 
 of the square matrix.</p>
 </dd>
 </dl>
 </section>
-<section id="id44">
-<h5>Returns<a class="headerlink" href="#id44" title="Permalink to this heading"></a></h5>
+<section id="id43">
+<h5>Returns<a class="headerlink" href="#id43" title="Permalink to this heading"></a></h5>
 <p>None</p>
 </section>
 </dd></dl>
@@ -787,8 +777,8 @@ of the square matrix.</p>
 <p>This class includes methods for standard and adaptive thresholding, as well as
 utility functions for applying masks to images. It allows for flexible control
 over thresholding parameters and mask application.</p>
-<section id="id45">
-<h4>Methods<a class="headerlink" href="#id45" title="Permalink to this heading"></a></h4>
+<section id="id44">
+<h4>Methods<a class="headerlink" href="#id44" title="Permalink to this heading"></a></h4>
 <dl class="simple">
 <dt>apply_threshold(channel, threshold_type=”standard”, thresh_value=127, lower_bound=0, upper_bound=255)</dt><dd><p>Applies the specified type of thresholding to an image channel.</p>
 </dd>
@@ -803,8 +793,8 @@ over thresholding parameters and mask application.</p>
 <dd><p>Applies a binary mask to an image, returning the masked image.</p>
 <p>This method applies a full mask to the original image, masking out areas 
 outside the mask. It ensures the mask is binary before application.</p>
-<section id="id46">
-<h5>Parameters<a class="headerlink" href="#id46" title="Permalink to this heading"></a></h5>
+<section id="id45">
+<h5>Parameters<a class="headerlink" href="#id45" title="Permalink to this heading"></a></h5>
 <dl class="simple">
 <dt>original_image<span class="classifier">ndarray</span></dt><dd><p>The original image to which the mask will be applied.</p>
 </dd>
@@ -812,15 +802,15 @@ outside the mask. It ensures the mask is binary before application.</p>
 </dd>
 </dl>
 </section>
-<section id="id47">
-<h5>Returns<a class="headerlink" href="#id47" title="Permalink to this heading"></a></h5>
+<section id="id46">
+<h5>Returns<a class="headerlink" href="#id46" title="Permalink to this heading"></a></h5>
 <dl class="simple">
 <dt>ndarray</dt><dd><p>The original image with the mask applied.</p>
 </dd>
 </dl>
 </section>
-<section id="id48">
-<h5>Raises<a class="headerlink" href="#id48" title="Permalink to this heading"></a></h5>
+<section id="id47">
+<h5>Raises<a class="headerlink" href="#id47" title="Permalink to this heading"></a></h5>
 <dl class="simple">
 <dt>ValueError</dt><dd><p>If either the original image or the mask is not provided.</p>
 </dd>
@@ -835,8 +825,8 @@ outside the mask. It ensures the mask is binary before application.</p>
 <p>This method supports various thresholding types including standard, Otsu’s, 
 and manual. It can work on grayscale or color channels (which are converted 
 to grayscale internally).</p>
-<section id="id49">
-<h5>Parameters<a class="headerlink" href="#id49" title="Permalink to this heading"></a></h5>
+<section id="id48">
+<h5>Parameters<a class="headerlink" href="#id48" title="Permalink to this heading"></a></h5>
 <dl class="simple">
 <dt>channel<span class="classifier">ndarray</span></dt><dd><p>The image channel to which the threshold will be applied.</p>
 </dd>
@@ -851,22 +841,22 @@ and “manual” (default is “standard”).</p>
 </dd>
 </dl>
 </section>
-<section id="id50">
-<h5>Returns<a class="headerlink" href="#id50" title="Permalink to this heading"></a></h5>
+<section id="id49">
+<h5>Returns<a class="headerlink" href="#id49" title="Permalink to this heading"></a></h5>
 <dl class="simple">
 <dt>ndarray</dt><dd><p>The thresholded image channel.</p>
 </dd>
 </dl>
 </section>
-<section id="id51">
-<h5>Raises<a class="headerlink" href="#id51" title="Permalink to this heading"></a></h5>
+<section id="id50">
+<h5>Raises<a class="headerlink" href="#id50" title="Permalink to this heading"></a></h5>
 <dl class="simple">
 <dt>ValueError</dt><dd><p>If no image channel is loaded or an invalid threshold type is specified.</p>
 </dd>
 </dl>
 </section>
-<section id="id52">
-<h5>Notes<a class="headerlink" href="#id52" title="Permalink to this heading"></a></h5>
+<section id="id51">
+<h5>Notes<a class="headerlink" href="#id51" title="Permalink to this heading"></a></h5>
 <ul class="simple">
 <li><p>If the image channel is colored, it will be converted to grayscale.</p></li>
 </ul>
@@ -879,10 +869,10 @@ and “manual” (default is “standard”).</p>
 <dd><p>Creates and returns a full mask from a thresholded region of interest (ROI).</p>
 <p>This method places the thresholded ROI on a full mask the size of the original 
 image, effectively creating a mask that can be applied to the entire image.</p>
-<section id="id53">
-<h5>Parameters<a class="headerlink" href="#id53" title="Permalink to this heading"></a></h5>
+<section id="id52">
+<h5>Parameters<a class="headerlink" href="#id52" title="Permalink to this heading"></a></h5>
 <dl class="simple">
-<dt>roi_coordinates<span class="classifier">tuple</span></dt><dd><p>The coordinates of the ROI in the format (x1, y1, x2, y2).</p>
+<dt>roi_coordinates<span class="classifier">tuple (Combination of X variables)</span></dt><dd><p>The coordinates of the ROI in the format (x1, y1, x2, y2).</p>
 </dd>
 <dt>original_shape<span class="classifier">ndarray</span></dt><dd><p>The original shape of the image to match the mask size.</p>
 </dd>
@@ -890,8 +880,8 @@ image, effectively creating a mask that can be applied to the entire image.</p>
 </dd>
 </dl>
 </section>
-<section id="id54">
-<h5>Returns<a class="headerlink" href="#id54" title="Permalink to this heading"></a></h5>
+<section id="id53">
+<h5>Returns<a class="headerlink" href="#id53" title="Permalink to this heading"></a></h5>
 <dl class="simple">
 <dt>ndarray</dt><dd><p>The full mask with the thresholded ROI.</p>
 </dd>
