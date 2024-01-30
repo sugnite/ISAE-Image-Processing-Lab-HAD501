@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenCvBinding package &mdash; Image Processing Lab  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=b3ba4146"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Image Processing Lab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">OpenCvBinding package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-OpenCvBinding.LabImageProcessing">OpenCvBinding.LabImageProcessing module</a><ul>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing</span></code></a><ul>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.Examples"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.Examples</span></code></a><ul>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.Examples.create_sinus_function"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.Examples.create_sinus_function()</span></code></a></li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.Examples.plot_function"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.Examples.plot_function()</span></code></a></li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.Examples.show_example_image"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.Examples.show_example_image()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageOpener"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.ImageOpener</span></code></a><ul>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageOpener.get_image"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.ImageOpener.get_image()</span></code></a></li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageOpener.get_image_path"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.ImageOpener.get_image_path()</span></code></a></li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageOpener.open_image"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.ImageOpener.open_image()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageTools"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.ImageTools</span></code></a><ul>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageTools.define_image_roi"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.ImageTools.define_image_roi()</span></code></a></li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageTools.get_channel"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.ImageTools.get_channel()</span></code></a></li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageTools.get_image_shape"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.ImageTools.get_image_shape()</span></code></a></li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageTools.resize_image"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.ImageTools.resize_image()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.ImageVisualization</span></code></a><ul>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.get_image_with_contour"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.ImageVisualization.get_image_with_contour()</span></code></a></li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_all_image_channels"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.ImageVisualization.plot_all_image_channels()</span></code></a></li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_histogram"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.ImageVisualization.plot_histogram()</span></code></a></li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_image"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.ImageVisualization.plot_image()</span></code></a></li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_peak_bounds"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.ImageVisualization.plot_peak_bounds()</span></code></a></li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.show_image"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.ImageVisualization.show_image()</span></code></a></li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.show_image_with_contour"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.ImageVisualization.show_image_with_contour()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.MorphologicalManipulation</span></code></a><ul>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation.dilate"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.MorphologicalManipulation.dilate()</span></code></a></li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation.erode"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.MorphologicalManipulation.erode()</span></code></a></li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation.get_image"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.MorphologicalManipulation.get_image()</span></code></a></li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation.get_mask_contour"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.MorphologicalManipulation.get_mask_contour()</span></code></a></li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation.set_kernel"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.MorphologicalManipulation.set_kernel()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.Thresholding"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.Thresholding</span></code></a><ul>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.Thresholding.apply_mask_on_image"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.Thresholding.apply_mask_on_image()</span></code></a></li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.Thresholding.apply_threshold"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.Thresholding.apply_threshold()</span></code></a></li>
+<li><a class="reference internal" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.Thresholding.get_full_mask"><code class="docutils literal notranslate"><span class="pre">LabImageProcessing.Thresholding.get_full_mask()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-OpenCvBinding">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Image Processing Lab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">OpenCvBinding package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/OpenCvBinding.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="opencvbinding-package">
+<h1>OpenCvBinding package<a class="headerlink" href="#opencvbinding-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-OpenCvBinding.LabImageProcessing">
+<span id="opencvbinding-labimageprocessing-module"></span><h2>OpenCvBinding.LabImageProcessing module<a class="headerlink" href="#module-OpenCvBinding.LabImageProcessing" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">OpenCvBinding.LabImageProcessing.</span></span><span class="sig-name descname"><span class="pre">LabImageProcessing</span></span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class used to bind OpenCV for Image Processing Lab.</p>
+<p>This class is a container for various subclasses that perform different image processing
+operations. It includes subclasses for opening images, visualizing them, applying various
+image processing tools, conducting morphological manipulations, and implementing thresholding techniques.</p>
+<section id="subclasses">
+<h3>Subclasses<a class="headerlink" href="#subclasses" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>ImageOpener<span class="classifier">class</span></dt><dd><p>Used to open images from a file system and manage image data.</p>
+</dd>
+<dt>ImageVisualization<span class="classifier">class</span></dt><dd><p>Offers functionalities for visualizing images and their characteristics.</p>
+</dd>
+<dt>ImageTools<span class="classifier">class</span></dt><dd><p>Provides tools for image processing operations like resizing, channel extraction, and ROI definition.</p>
+</dd>
+<dt>MorphologicalManipulation<span class="classifier">class</span></dt><dd><p>Allows application of morphological operations such as erosion and dilation.</p>
+</dd>
+<dt>Thresholding<span class="classifier">class</span></dt><dd><p>Implements various thresholding techniques on image channels.</p>
+</dd>
+<dt>Examples<span class="classifier">class</span></dt><dd><p>A class for demonstrating example use cases of plot and image vizualisation. (Only Demo)</p>
+</dd>
+</dl>
+</section>
+<section id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h3>
+<p>Each subclass is equipped with its own set of attributes and methods tailored to its specific purpose
+in image processing.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.Examples">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Examples</span></span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.Examples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.Examples" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class for demonstrating example use cases of plot and image vizualisation. (Only Demo)</p>
+<p>This class is designed to showcase practical implementations of the techniques and tools
+available in the <cite>LabImageProcessing</cite> package.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.Examples.create_sinus_function">
+<span class="sig-name descname"><span class="pre">create_sinus_function</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.Examples.create_sinus_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.Examples.create_sinus_function" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a sinusoidal function.</p>
+<p>This method creates and returns a sine wave function based on a range of 
+values from 0 to 10.</p>
+<section id="returns">
+<h4>Returns<a class="headerlink" href="#returns" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>ndarray</dt><dd><p>The sine wave values corresponding to the x values.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.Examples.plot_function">
+<span class="sig-name descname"><span class="pre">plot_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.Examples.plot_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.Examples.plot_function" title="Permalink to this definition"></a></dt>
+<dd><p>Plots a given mathematical function.</p>
+<p>This method takes a set of y-values corresponding to a function and plots 
+them against a linearly spaced x-axis, creating a visual representation of 
+the function.</p>
+<section id="parameters">
+<h4>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>function<span class="classifier">ndarray</span></dt><dd><p>The y-values of the function to be plotted.</p>
+</dd>
+</dl>
+</section>
+<section id="id1">
+<h4>Returns<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
+<p>None</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.Examples.show_example_image">
+<span class="sig-name descname"><span class="pre">show_example_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.Examples.show_example_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.Examples.show_example_image" title="Permalink to this definition"></a></dt>
+<dd><p>Create and display an example image with OpenCV.</p>
+<p>This function generates an image with a dark blue background and displays white text 
+saying “Example Image”. It is primarily designed for demonstration purposes to showcase 
+basic OpenCV functionalities such as creating images, adding text, and handling window 
+events. The function creates a window titled “Press ‘Q’ to exit”, which displays the image. 
+The window remains open until the user presses the ‘Q’ key.</p>
+<p>The image is created using a numpy array to define its dimensions and color. The text is 
+added to the image using OpenCV’s <cite>putText</cite> function. The window handling is managed using 
+OpenCV’s <cite>imshow</cite> and <cite>waitKey</cite> functions.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageOpener">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ImageOpener</span></span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.ImageOpener"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageOpener" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class used to open images from a file system.</p>
+<p>This class provides functionalities to open an image file from a specified path 
+and access its data in the form of a numpy array. If no path is provided, it 
+opens a file dialog allowing the user to select an image file. The class can 
+also return the path of the currently opened image.</p>
+<section id="attributes">
+<h4>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>image_path<span class="classifier">str</span></dt><dd><p>Path of the image file. Initially set to an empty string.</p>
+</dd>
+<dt>image<span class="classifier">ndarray or None</span></dt><dd><p>Image data in numpy array format. Initialized as None, and populated with 
+image data after an image is opened.</p>
+</dd>
+</dl>
+</section>
+<section id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>open_image(image_path=None)</dt><dd><p>Opens an image file from the given path or a file dialog if no path is provided.</p>
+</dd>
+<dt>get_image()</dt><dd><p>Returns the current image as a numpy array.</p>
+</dd>
+<dt>get_image_path()</dt><dd><p>Returns the path of the current image as a string.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageOpener.get_image">
+<span class="sig-name descname"><span class="pre">get_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.ImageOpener.get_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageOpener.get_image" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the current image.</p>
+<p>Retrieves the image data stored in the <cite>image</cite> attribute.</p>
+<section id="id2">
+<h5>Returns<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>ndarray</dt><dd><p>The current image as a numpy array.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageOpener.get_image_path">
+<span class="sig-name descname"><span class="pre">get_image_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.ImageOpener.get_image_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageOpener.get_image_path" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the path of the current image.</p>
+<p>Retrieves the path of the image stored in the <cite>image_path</cite> attribute.</p>
+<section id="id3">
+<h5>Returns<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>str</dt><dd><p>The path of the current image.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageOpener.open_image">
+<span class="sig-name descname"><span class="pre">open_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.ImageOpener.open_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageOpener.open_image" title="Permalink to this definition"></a></dt>
+<dd><p>Opens an image file from the specified path or via a file dialog.</p>
+<p>If <cite>image_path</cite> is not provided, this method opens a file dialog for the user
+to select an image file. The selected image is then read into a numpy array
+and stored in the <cite>image</cite> attribute. The path of the image is stored in the 
+<cite>image_path</cite> attribute.</p>
+<section id="id4">
+<h5>Parameters<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>image_path<span class="classifier">str, optional</span></dt><dd><p>The path of the image to be opened. If None, a file dialog is opened for 
+image selection (default is None).</p>
+</dd>
+</dl>
+</section>
+<section id="id5">
+<h5>Returns<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h5>
+<p>None</p>
+</section>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageTools">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ImageTools</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.ImageTools"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageTools" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class for performing various image processing operations.</p>
+<p>This class offers functionality to extract specific color channels, resize images,
+and define a region of interest (ROI) on an image. The ROI can be interactively 
+selected by the user using mouse events.</p>
+<section id="id6">
+<h4>Parameters<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>image<span class="classifier">ndarray</span></dt><dd><p>The image on which processing operations will be performed.</p>
+</dd>
+</dl>
+</section>
+<section id="id7">
+<h4>Attributes<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>original_image<span class="classifier">ndarray</span></dt><dd><p>A copy of the original image.</p>
+</dd>
+<dt>roi<span class="classifier">tuple or None</span></dt><dd><p>The coordinates of the defined region of interest (ROI), if defined.</p>
+</dd>
+</dl>
+</section>
+<section id="id8">
+<h4>Methods<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>get_channel(channel_name)</dt><dd><p>Extracts and returns a specific channel from the image.</p>
+</dd>
+<dt>resize_image(new_width)</dt><dd><p>Resizes the image to a new width while maintaining aspect ratio.</p>
+</dd>
+<dt>get_image_shape()</dt><dd><p>Returns the shape of the image (height, width).</p>
+</dd>
+<dt>define_image_roi(channel)</dt><dd><p>Interactively defines a region of interest (ROI) on the given channel.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageTools.define_image_roi">
+<span class="sig-name descname"><span class="pre">define_image_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.ImageTools.define_image_roi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageTools.define_image_roi" title="Permalink to this definition"></a></dt>
+<dd><p>Interactively defines a region of interest (ROI) on the given channel.</p>
+<p>This method allows the user to select a rectangular ROI on the provided
+image channel. The selection is done using mouse events: clicking and 
+dragging to define the rectangle, and releasing to finalize it. The 
+coordinates of the defined ROI are stored.</p>
+<section id="id9">
+<h5>Parameters<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>channel<span class="classifier">ndarray</span></dt><dd><p>The single-channel image (e.g., a color or grayscale channel) on which 
+the ROI is to be defined.</p>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h5>Returns<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>tuple</dt><dd><p>A tuple containing the cropped ROI and the coordinates of the ROI 
+in the format (x1, y1, x2, y2).</p>
+</dd>
+</dl>
+</section>
+<section id="id11">
+<h5>Notes<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h5>
+<ul class="simple">
+<li><p>Click and drag to start drawing the rectangle.</p></li>
+<li><p>Release the click to finalize the rectangle.</p></li>
+<li><p>The ROI is defined by the starting and ending coordinates of the rectangle.</p></li>
+</ul>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageTools.get_channel">
+<span class="sig-name descname"><span class="pre">get_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.ImageTools.get_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageTools.get_channel" title="Permalink to this definition"></a></dt>
+<dd><p>Extracts and returns a specific color or HSL channel from the image.</p>
+<p>This method allows extraction of individual color channels (Blue, Green, Red) 
+or HSL (Hue, Saturation, Luminance) channels from the image. The channel 
+to be extracted is specified by the channel name.</p>
+<section id="id12">
+<h5>Parameters<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>channel_name<span class="classifier">str</span></dt><dd><p>Name of the channel to be extracted. Valid options are “blue”, “green”, 
+“red”, “hue”, “saturation”, and “luminance”.</p>
+</dd>
+</dl>
+</section>
+<section id="id13">
+<h5>Returns<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>ndarray</dt><dd><p>The extracted channel as a single-channel image.</p>
+</dd>
+</dl>
+</section>
+<section id="raises">
+<h5>Raises<a class="headerlink" href="#raises" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If an invalid channel name is provided.</p>
+</dd>
+</dl>
+</section>
+<section id="id14">
+<h5>Notes<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h5>
+<ul class="simple">
+<li><p>The channel name is not case-sensitive.</p></li>
+</ul>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageTools.get_image_shape">
+<span class="sig-name descname"><span class="pre">get_image_shape</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.ImageTools.get_image_shape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageTools.get_image_shape" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the shape (height, width) of the image.</p>
+<p>This method retrieves the dimensions of the image, specifically its height 
+and width, and returns them.</p>
+<section id="id15">
+<h5>Returns<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>tuple</dt><dd><p>A tuple containing the height and width of the image.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageTools.resize_image">
+<span class="sig-name descname"><span class="pre">resize_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_width</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.ImageTools.resize_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageTools.resize_image" title="Permalink to this definition"></a></dt>
+<dd><p>Resizes the image to a new width while maintaining the aspect ratio.</p>
+<p>This method resizes the image to the specified width. The height is 
+automatically adjusted to maintain the original aspect ratio of the image.</p>
+<section id="id16">
+<h5>Parameters<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>new_width<span class="classifier">int</span></dt><dd><p>The new width to which the image will be resized.</p>
+</dd>
+</dl>
+</section>
+<section id="id17">
+<h5>Returns<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>ndarray</dt><dd><p>The resized image.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ImageVisualization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.ImageVisualization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class for visualizing various aspects of images using OpenCV and Matplotlib.</p>
+<p>This class offers functionalities for visualizing different channels of an image, 
+plotting histograms, displaying images, and showing images with contours. It can 
+handle both grayscale and color images and provides methods for specific visual 
+analyses such as identifying peak bounds in a histogram.</p>
+<section id="id18">
+<h4>Parameters<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>image<span class="classifier">ndarray</span></dt><dd><p>The image to be visualized.</p>
+</dd>
+</dl>
+</section>
+<section id="id19">
+<h4>Methods<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>plot_all_image_channels()</dt><dd><p>Plots RGB and HSV channels of the current image.</p>
+</dd>
+<dt>plot_histogram(channel_data, grid=False, xmin=None, xmax=None)</dt><dd><p>Plots a histogram for a given channel of the image.</p>
+</dd>
+<dt>plot_image(image)</dt><dd><p>Displays the given image using Matplotlib.</p>
+</dd>
+<dt>show_image(image=None, title=”Image”)</dt><dd><p>Displays the given or current image using OpenCV.</p>
+</dd>
+<dt>show_image_with_contour(image, contour)</dt><dd><p>Displays the given image with a specified contour.</p>
+</dd>
+<dt>get_image_with_contour(image, contour)</dt><dd><p>Returns a copy of the image with the specified contour.</p>
+</dd>
+<dt>plot_peak_bounds(channel)</dt><dd><p>Plots histogram of a channel and highlights the peak bounds.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.get_image_with_contour">
+<span class="sig-name descname"><span class="pre">get_image_with_contour</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contour</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.ImageVisualization.get_image_with_contour"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.get_image_with_contour" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a copy of the image with the specified contour applied.</p>
+<p>The contour is applied by setting the pixels within the contour to a specific 
+color (in this case, red). This method splits the image into its color channels, 
+applies the contour, and then merges the channels back.</p>
+<section id="id20">
+<h5>Parameters<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>image<span class="classifier">ndarray</span></dt><dd><p>The original image.</p>
+</dd>
+<dt>contour<span class="classifier">ndarray</span></dt><dd><p>The contour mask to be applied.</p>
+</dd>
+</dl>
+</section>
+<section id="id21">
+<h5>Returns<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>ndarray</dt><dd><p>The image with the contour applied.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_all_image_channels">
+<span class="sig-name descname"><span class="pre">plot_all_image_channels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.ImageVisualization.plot_all_image_channels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_all_image_channels" title="Permalink to this definition"></a></dt>
+<dd><p>Plots individual RGB and HSV channels of the current image.</p>
+<p>This method converts the current image from BGR to RGB and BGR to HSV,
+then splits these into their respective channels (Red, Green, Blue, Hue,
+Saturation, and Value). Each channel is then plotted separately using 
+Matplotlib. If no image is currently loaded, an error message is printed.</p>
+<section id="id22">
+<h5>Returns<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>tuple of (None, str) or None</dt><dd><p>If the image is not loaded, returns (None, “No image”). Otherwise, 
+returns None after displaying the plots.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_histogram">
+<span class="sig-name descname"><span class="pre">plot_histogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.ImageVisualization.plot_histogram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_histogram" title="Permalink to this definition"></a></dt>
+<dd><p>Plots a histogram for a given channel of the image.</p>
+<p>This method calculates and plots the histogram of the provided channel data.
+The histogram shows the distribution of pixel intensity values. Options to 
+add a grid and set the range of x-axis (intensity values) are available.</p>
+<section id="id23">
+<h5>Parameters<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>channel_data<span class="classifier">ndarray</span></dt><dd><p>The channel data (e.g., a color or grayscale channel) for which the 
+histogram is to be plotted.</p>
+</dd>
+<dt>grid<span class="classifier">bool, optional</span></dt><dd><p>Whether to display a grid on the plot (default is False).</p>
+</dd>
+<dt>xmin<span class="classifier">int, optional</span></dt><dd><p>The minimum intensity value on the x-axis (default is 0).</p>
+</dd>
+<dt>xmax<span class="classifier">int, optional</span></dt><dd><p>The maximum intensity value on the x-axis (default is 256).</p>
+</dd>
+</dl>
+</section>
+<section id="id24">
+<h5>Returns<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h5>
+<p>None</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_image">
+<span class="sig-name descname"><span class="pre">plot_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.ImageVisualization.plot_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_image" title="Permalink to this definition"></a></dt>
+<dd><p>Displays the given image using Matplotlib.</p>
+<p>This method checks if the image is grayscale and, if so, converts it to RGB
+format before displaying. It uses Matplotlib to plot the image with axis 
+labels and ticks turned off.</p>
+<section id="id25">
+<h5>Parameters<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>image<span class="classifier">ndarray</span></dt><dd><p>The image to be displayed.</p>
+</dd>
+</dl>
+</section>
+<section id="id26">
+<h5>Returns<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h5>
+<p>None</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_peak_bounds">
+<span class="sig-name descname"><span class="pre">plot_peak_bounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.ImageVisualization.plot_peak_bounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_peak_bounds" title="Permalink to this definition"></a></dt>
+<dd><p>Plots the histogram of a given channel and highlights the main peak bounds.</p>
+<p>This method calculates the histogram of the specified channel, identifies 
+the main peak, and determines its lower and upper bounds. It then plots 
+the histogram and marks the peak bounds with vertical lines.</p>
+<section id="id27">
+<h5>Parameters<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>channel<span class="classifier">ndarray</span></dt><dd><p>The channel data (e.g., a color channel from an image) for which the 
+histogram and peak bounds are to be plotted.</p>
+</dd>
+</dl>
+</section>
+<section id="id28">
+<h5>Returns<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h5>
+<p>None</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.show_image">
+<span class="sig-name descname"><span class="pre">show_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Image'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.ImageVisualization.show_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.show_image" title="Permalink to this definition"></a></dt>
+<dd><p>Displays the given or current image using OpenCV.</p>
+<p>If no image is provided, the method uses the current image stored in the class.
+The image is displayed in a window with the specified title. The window remains 
+open until the ‘Q’ key is pressed.</p>
+<section id="id29">
+<h5>Parameters<a class="headerlink" href="#id29" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>image<span class="classifier">ndarray, optional</span></dt><dd><p>The image to be displayed. If None, the current image is used (default is None).</p>
+</dd>
+<dt>title<span class="classifier">str, optional</span></dt><dd><p>The title of the window in which the image is displayed (default is “Image”).</p>
+</dd>
+</dl>
+</section>
+<section id="id30">
+<h5>Returns<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h5>
+<p>None</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.show_image_with_contour">
+<span class="sig-name descname"><span class="pre">show_image_with_contour</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contour</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.ImageVisualization.show_image_with_contour"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.show_image_with_contour" title="Permalink to this definition"></a></dt>
+<dd><p>Displays the given image with a specified contour using OpenCV.</p>
+<p>This method first calls <cite>get_image_with_contour</cite> to apply the contour to the image
+and then displays the result. The window title indicates that it is showing an 
+image with a contour.</p>
+<section id="id31">
+<h5>Parameters<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>image<span class="classifier">ndarray</span></dt><dd><p>The image to which the contour will be applied.</p>
+</dd>
+<dt>contour<span class="classifier">ndarray</span></dt><dd><p>The contour to be applied to the image.</p>
+</dd>
+</dl>
+</section>
+<section id="id32">
+<h5>Returns<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h5>
+<p>None</p>
+</section>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MorphologicalManipulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.MorphologicalManipulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class for performing morphological operations on images.</p>
+<p>This class allows the application of morphological operations like erosion and 
+dilation on images. A structuring element (kernel) must be set before performing 
+these operations. The class also provides a method to extract mask contours from 
+an image.</p>
+<section id="id33">
+<h4>Attributes<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>image<span class="classifier">ndarray</span></dt><dd><p>The original image for manipulation.</p>
+</dd>
+<dt>kernel<span class="classifier">ndarray</span></dt><dd><p>The structuring element used for morphological operations.</p>
+</dd>
+<dt>manipulated_image<span class="classifier">ndarray</span></dt><dd><p>The image after applying morphological operations.</p>
+</dd>
+</dl>
+</section>
+<section id="id34">
+<h4>Methods<a class="headerlink" href="#id34" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>set_kernel(size)</dt><dd><p>Sets the structuring element for morphological operations.</p>
+</dd>
+<dt>erode(iterations=1)</dt><dd><p>Applies erosion to the image.</p>
+</dd>
+<dt>dilate(iterations=1)</dt><dd><p>Applies dilation to the image.</p>
+</dd>
+<dt>get_image()</dt><dd><p>Returns the manipulated image.</p>
+</dd>
+<dt>get_mask_contour()</dt><dd><p>Extracts and returns contours from the image.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation.dilate">
+<span class="sig-name descname"><span class="pre">dilate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.MorphologicalManipulation.dilate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation.dilate" title="Permalink to this definition"></a></dt>
+<dd><p>Applies dilation to the manipulated image using the set kernel.</p>
+<p>This method dilates the image, typically increasing the size of foreground 
+objects. A kernel must be set before calling this method.</p>
+<section id="id35">
+<h5>Parameters<a class="headerlink" href="#id35" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>iterations<span class="classifier">int, optional</span></dt><dd><p>The number of times the dilation is applied (default is 1).</p>
+</dd>
+</dl>
+</section>
+<section id="id36">
+<h5>Raises<a class="headerlink" href="#id36" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the kernel is not set prior to calling this method.</p>
+</dd>
+</dl>
+</section>
+<section id="id37">
+<h5>Returns<a class="headerlink" href="#id37" title="Permalink to this heading"></a></h5>
+<p>None</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation.erode">
+<span class="sig-name descname"><span class="pre">erode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.MorphologicalManipulation.erode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation.erode" title="Permalink to this definition"></a></dt>
+<dd><p>Applies erosion to the manipulated image using the set kernel.</p>
+<p>This method erodes the image, which typically reduces the size of the 
+foreground objects. A kernel must be set before calling this method.</p>
+<section id="id38">
+<h5>Parameters<a class="headerlink" href="#id38" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>iterations<span class="classifier">int, optional</span></dt><dd><p>The number of times the erosion is applied (default is 1).</p>
+</dd>
+</dl>
+</section>
+<section id="id39">
+<h5>Raises<a class="headerlink" href="#id39" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the kernel is not set prior to calling this method.</p>
+</dd>
+</dl>
+</section>
+<section id="id40">
+<h5>Returns<a class="headerlink" href="#id40" title="Permalink to this heading"></a></h5>
+<p>None</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation.get_image">
+<span class="sig-name descname"><span class="pre">get_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.MorphologicalManipulation.get_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation.get_image" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the current state of the manipulated image.</p>
+<p>This method retrieves the image as it is after applying morphological 
+operations like erosion or dilation.</p>
+<section id="id41">
+<h5>Returns<a class="headerlink" href="#id41" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>ndarray</dt><dd><p>The manipulated image.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation.get_mask_contour">
+<span class="sig-name descname"><span class="pre">get_mask_contour</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.MorphologicalManipulation.get_mask_contour"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation.get_mask_contour" title="Permalink to this definition"></a></dt>
+<dd><p>Extracts and returns the contours from the manipulated image.</p>
+<p>This method first dilates the image to enhance the contours. It then performs 
+bitwise operations to isolate and return only the contours. The original state 
+of the manipulated image is preserved.</p>
+<section id="id42">
+<h5>Returns<a class="headerlink" href="#id42" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>ndarray</dt><dd><p>The image with only the contours extracted.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation.set_kernel">
+<span class="sig-name descname"><span class="pre">set_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.MorphologicalManipulation.set_kernel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation.set_kernel" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the structuring element (kernel) for morphological operations.</p>
+<p>This method initializes the kernel used for erosion and dilation operations. 
+The kernel is a square matrix of the specified size.</p>
+<section id="id43">
+<h5>Parameters<a class="headerlink" href="#id43" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>size<span class="classifier">int</span></dt><dd><p>The size of the structuring element. Represents both the width and height 
+of the square matrix.</p>
+</dd>
+</dl>
+</section>
+<section id="id44">
+<h5>Returns<a class="headerlink" href="#id44" title="Permalink to this heading"></a></h5>
+<p>None</p>
+</section>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.Thresholding">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Thresholding</span></span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.Thresholding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.Thresholding" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class for applying various thresholding techniques on image channels.</p>
+<p>This class includes methods for standard and adaptive thresholding, as well as
+utility functions for applying masks to images. It allows for flexible control
+over thresholding parameters and mask application.</p>
+<section id="id45">
+<h4>Methods<a class="headerlink" href="#id45" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>apply_threshold(channel, threshold_type=”standard”, thresh_value=127, lower_bound=0, upper_bound=255)</dt><dd><p>Applies the specified type of thresholding to an image channel.</p>
+</dd>
+<dt>get_full_mask(roi_coordinates, original_shape, thresholded_roi)</dt><dd><p>Creates and returns a full mask based on the thresholded ROI.</p>
+</dd>
+<dt>apply_mask_on_image(original_image, full_mask)</dt><dd><p>Applies a mask to the original image and returns the masked image.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.Thresholding.apply_mask_on_image">
+<span class="sig-name descname"><span class="pre">apply_mask_on_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">original_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">full_mask</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.Thresholding.apply_mask_on_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.Thresholding.apply_mask_on_image" title="Permalink to this definition"></a></dt>
+<dd><p>Applies a binary mask to an image, returning the masked image.</p>
+<p>This method applies a full mask to the original image, masking out areas 
+outside the mask. It ensures the mask is binary before application.</p>
+<section id="id46">
+<h5>Parameters<a class="headerlink" href="#id46" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>original_image<span class="classifier">ndarray</span></dt><dd><p>The original image to which the mask will be applied.</p>
+</dd>
+<dt>full_mask<span class="classifier">ndarray</span></dt><dd><p>The binary mask to be applied to the original image.</p>
+</dd>
+</dl>
+</section>
+<section id="id47">
+<h5>Returns<a class="headerlink" href="#id47" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>ndarray</dt><dd><p>The original image with the mask applied.</p>
+</dd>
+</dl>
+</section>
+<section id="id48">
+<h5>Raises<a class="headerlink" href="#id48" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If either the original image or the mask is not provided.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.Thresholding.apply_threshold">
+<span class="sig-name descname"><span class="pre">apply_threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'standard'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresh_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">127</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_bound</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_bound</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.Thresholding.apply_threshold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.Thresholding.apply_threshold" title="Permalink to this definition"></a></dt>
+<dd><p>Applies a specified type of thresholding to an image channel.</p>
+<p>This method supports various thresholding types including standard, Otsu’s, 
+and manual. It can work on grayscale or color channels (which are converted 
+to grayscale internally).</p>
+<section id="id49">
+<h5>Parameters<a class="headerlink" href="#id49" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>channel<span class="classifier">ndarray</span></dt><dd><p>The image channel to which the threshold will be applied.</p>
+</dd>
+<dt>threshold_type<span class="classifier">str, optional</span></dt><dd><p>The type of thresholding to apply. Options are “standard”, “otsu”, 
+and “manual” (default is “standard”).</p>
+</dd>
+<dt>thresh_value<span class="classifier">int, optional</span></dt><dd><p>The threshold value used in standard thresholding (default is 127).</p>
+</dd>
+<dt>lower_bound<span class="classifier">int, optional</span></dt><dd><p>The lower bound for manual thresholding (default is 0).</p>
+</dd>
+<dt>upper_bound<span class="classifier">int, optional</span></dt><dd><p>The upper bound for manual thresholding (default is 255).</p>
+</dd>
+</dl>
+</section>
+<section id="id50">
+<h5>Returns<a class="headerlink" href="#id50" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>ndarray</dt><dd><p>The thresholded image channel.</p>
+</dd>
+</dl>
+</section>
+<section id="id51">
+<h5>Raises<a class="headerlink" href="#id51" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If no image channel is loaded or an invalid threshold type is specified.</p>
+</dd>
+</dl>
+</section>
+<section id="id52">
+<h5>Notes<a class="headerlink" href="#id52" title="Permalink to this heading"></a></h5>
+<ul class="simple">
+<li><p>If the image channel is colored, it will be converted to grayscale.</p></li>
+</ul>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OpenCvBinding.LabImageProcessing.LabImageProcessing.Thresholding.get_full_mask">
+<span class="sig-name descname"><span class="pre">get_full_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">roi_coordinates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">original_shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresholded_roi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OpenCvBinding/LabImageProcessing.html#LabImageProcessing.Thresholding.get_full_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#OpenCvBinding.LabImageProcessing.LabImageProcessing.Thresholding.get_full_mask" title="Permalink to this definition"></a></dt>
+<dd><p>Creates and returns a full mask from a thresholded region of interest (ROI).</p>
+<p>This method places the thresholded ROI on a full mask the size of the original 
+image, effectively creating a mask that can be applied to the entire image.</p>
+<section id="id53">
+<h5>Parameters<a class="headerlink" href="#id53" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>roi_coordinates<span class="classifier">tuple</span></dt><dd><p>The coordinates of the ROI in the format (x1, y1, x2, y2).</p>
+</dd>
+<dt>original_shape<span class="classifier">ndarray</span></dt><dd><p>The original shape of the image to match the mask size.</p>
+</dd>
+<dt>thresholded_roi<span class="classifier">ndarray</span></dt><dd><p>The thresholded region of interest.</p>
+</dd>
+</dl>
+</section>
+<section id="id54">
+<h5>Returns<a class="headerlink" href="#id54" title="Permalink to this heading"></a></h5>
+<dl class="simple">
+<dt>ndarray</dt><dd><p>The full mask with the thresholded ROI.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+<section id="module-OpenCvBinding">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-OpenCvBinding" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Augustin Fuchs.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

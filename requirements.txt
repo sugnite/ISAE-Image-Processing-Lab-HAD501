@@ -1,0 +1,5 @@
+notebook
+opencv-python
+numpy==1.17
+matplotlib==3.5
+tk

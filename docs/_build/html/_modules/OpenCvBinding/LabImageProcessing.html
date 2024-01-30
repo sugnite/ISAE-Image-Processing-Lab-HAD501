@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenCvBinding.LabImageProcessing &mdash; Image Processing Lab  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Image Processing Lab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Image Processing Lab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">OpenCvBinding.LabImageProcessing</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for OpenCvBinding.LabImageProcessing</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">filedialog</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<div class="viewcode-block" id="LabImageProcessing"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing">[docs]</a><span class="k">class</span> <span class="nc">LabImageProcessing</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class used to bind OpenCV for Image Processing Lab.</span>
+
+<span class="sd">    This class is a container for various subclasses that perform different image processing</span>
+<span class="sd">    operations. It includes subclasses for opening images, visualizing them, applying various</span>
+<span class="sd">    image processing tools, conducting morphological manipulations, and implementing thresholding techniques.</span>
+
+<span class="sd">    Subclasses</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ImageOpener : class</span>
+<span class="sd">        Used to open images from a file system and manage image data.</span>
+<span class="sd">    ImageVisualization : class</span>
+<span class="sd">        Offers functionalities for visualizing images and their characteristics.</span>
+<span class="sd">    ImageTools : class</span>
+<span class="sd">        Provides tools for image processing operations like resizing, channel extraction, and ROI definition.</span>
+<span class="sd">    MorphologicalManipulation : class</span>
+<span class="sd">        Allows application of morphological operations such as erosion and dilation.</span>
+<span class="sd">    Thresholding : class</span>
+<span class="sd">        Implements various thresholding techniques on image channels.</span>
+<span class="sd">    Examples : class</span>
+<span class="sd">        A class for demonstrating example use cases of plot and image vizualisation. (Only Demo)</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Each subclass is equipped with its own set of attributes and methods tailored to its specific purpose</span>
+<span class="sd">    in image processing.</span>
+
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Class definitions as provided...</span>
+
+<div class="viewcode-block" id="LabImageProcessing.ImageOpener"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageOpener">[docs]</a>    <span class="k">class</span> <span class="nc">ImageOpener</span><span class="p">:</span>        
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A class used to open images from a file system.</span>
+
+<span class="sd">        This class provides functionalities to open an image file from a specified path </span>
+<span class="sd">        and access its data in the form of a numpy array. If no path is provided, it </span>
+<span class="sd">        opens a file dialog allowing the user to select an image file. The class can </span>
+<span class="sd">        also return the path of the currently opened image.</span>
+
+<span class="sd">        Attributes</span>
+<span class="sd">        ----------</span>
+<span class="sd">        image_path : str</span>
+<span class="sd">            Path of the image file. Initially set to an empty string.</span>
+<span class="sd">        image : ndarray or None</span>
+<span class="sd">            Image data in numpy array format. Initialized as None, and populated with </span>
+<span class="sd">            image data after an image is opened.</span>
+
+<span class="sd">        Methods</span>
+<span class="sd">        -------</span>
+<span class="sd">        open_image(image_path=None)</span>
+<span class="sd">            Opens an image file from the given path or a file dialog if no path is provided.</span>
+<span class="sd">        get_image()</span>
+<span class="sd">            Returns the current image as a numpy array.</span>
+<span class="sd">        get_image_path()</span>
+<span class="sd">            Returns the path of the current image as a string.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Initializes the ImageOpener class with default values for attributes.</span>
+<span class="sd">            </span>
+<span class="sd">            Sets the `image_path` attribute to an empty string and `image` attribute to None.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image_path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="LabImageProcessing.ImageOpener.open_image"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageOpener.open_image">[docs]</a>        <span class="k">def</span> <span class="nf">open_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Opens an image file from the specified path or via a file dialog.</span>
+
+<span class="sd">            If `image_path` is not provided, this method opens a file dialog for the user</span>
+<span class="sd">            to select an image file. The selected image is then read into a numpy array</span>
+<span class="sd">            and stored in the `image` attribute. The path of the image is stored in the </span>
+<span class="sd">            `image_path` attribute.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            image_path : str, optional</span>
+<span class="sd">                The path of the image to be opened. If None, a file dialog is opened for </span>
+<span class="sd">                image selection (default is None).</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            None</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">if</span> <span class="n">image_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+                <span class="n">root</span><span class="o">.</span><span class="n">withdraw</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">image_path</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">askopenfilename</span><span class="p">(</span><span class="n">initialdir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~/Pictures&quot;</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">image_path</span> <span class="o">=</span> <span class="n">image_path</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_path</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_path</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="LabImageProcessing.ImageOpener.get_image"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageOpener.get_image">[docs]</a>        <span class="k">def</span> <span class="nf">get_image</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns the current image.</span>
+
+<span class="sd">            Retrieves the image data stored in the `image` attribute.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            ndarray</span>
+<span class="sd">                The current image as a numpy array.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span></div>
+
+<div class="viewcode-block" id="LabImageProcessing.ImageOpener.get_image_path"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageOpener.get_image_path">[docs]</a>        <span class="k">def</span> <span class="nf">get_image_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns the path of the current image.</span>
+
+<span class="sd">            Retrieves the path of the image stored in the `image_path` attribute.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            str</span>
+<span class="sd">                The path of the current image.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_path</span></div></div>
+
+
+<div class="viewcode-block" id="LabImageProcessing.ImageVisualization"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization">[docs]</a>    <span class="k">class</span> <span class="nc">ImageVisualization</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A class for visualizing various aspects of images using OpenCV and Matplotlib.</span>
+
+<span class="sd">        This class offers functionalities for visualizing different channels of an image, </span>
+<span class="sd">        plotting histograms, displaying images, and showing images with contours. It can </span>
+<span class="sd">        handle both grayscale and color images and provides methods for specific visual </span>
+<span class="sd">        analyses such as identifying peak bounds in a histogram.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        image : ndarray</span>
+<span class="sd">            The image to be visualized.</span>
+
+<span class="sd">        Methods</span>
+<span class="sd">        -------</span>
+<span class="sd">        plot_all_image_channels()</span>
+<span class="sd">            Plots RGB and HSV channels of the current image.</span>
+<span class="sd">        plot_histogram(channel_data, grid=False, xmin=None, xmax=None)</span>
+<span class="sd">            Plots a histogram for a given channel of the image.</span>
+<span class="sd">        plot_image(image)</span>
+<span class="sd">            Displays the given image using Matplotlib.</span>
+<span class="sd">        show_image(image=None, title=&quot;Image&quot;)</span>
+<span class="sd">            Displays the given or current image using OpenCV.</span>
+<span class="sd">        show_image_with_contour(image, contour)</span>
+<span class="sd">            Displays the given image with a specified contour.</span>
+<span class="sd">        get_image_with_contour(image, contour)</span>
+<span class="sd">            Returns a copy of the image with the specified contour.</span>
+<span class="sd">        plot_peak_bounds(channel)</span>
+<span class="sd">            Plots histogram of a channel and highlights the peak bounds.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Initializes the ImageVisualization class with an image.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            image : ndarray</span>
+<span class="sd">                The image to be visualized.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span>
+
+<div class="viewcode-block" id="LabImageProcessing.ImageVisualization.plot_all_image_channels"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_all_image_channels">[docs]</a>        <span class="k">def</span> <span class="nf">plot_all_image_channels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Plots individual RGB and HSV channels of the current image.</span>
+
+<span class="sd">            This method converts the current image from BGR to RGB and BGR to HSV,</span>
+<span class="sd">            then splits these into their respective channels (Red, Green, Blue, Hue,</span>
+<span class="sd">            Saturation, and Value). Each channel is then plotted separately using </span>
+<span class="sd">            Matplotlib. If no image is currently loaded, an error message is printed.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            tuple of (None, str) or None</span>
+<span class="sd">                If the image is not loaded, returns (None, &quot;No image&quot;). Otherwise, </span>
+<span class="sd">                returns None after displaying the plots.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Could not read the image.&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;No image&quot;</span>
+
+            <span class="c1"># Convert image from BGR to RGB</span>
+            <span class="n">image_rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+
+            <span class="c1"># Convert image from BGR to HSV</span>
+            <span class="n">image_hsv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2HSV</span><span class="p">)</span>
+
+            <span class="c1"># Split into individual channels</span>
+            <span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">image_rgb</span><span class="p">)</span>
+            <span class="n">h</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">image_hsv</span><span class="p">)</span>
+
+            <span class="c1"># Plotting the channels</span>
+            <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+            <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Red Channel&#39;</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+            <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens&#39;</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Green Channel&#39;</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+            <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Blue Channel&#39;</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+            <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;hsv&#39;</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Hue Channel&#39;</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+            <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Saturation Channel&#39;</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+            <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Value Channel&#39;</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="LabImageProcessing.ImageVisualization.plot_histogram"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_histogram">[docs]</a>        <span class="k">def</span> <span class="nf">plot_histogram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_data</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Plots a histogram for a given channel of the image.</span>
+
+<span class="sd">            This method calculates and plots the histogram of the provided channel data.</span>
+<span class="sd">            The histogram shows the distribution of pixel intensity values. Options to </span>
+<span class="sd">            add a grid and set the range of x-axis (intensity values) are available.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            channel_data : ndarray</span>
+<span class="sd">                The channel data (e.g., a color or grayscale channel) for which the </span>
+<span class="sd">                histogram is to be plotted.</span>
+<span class="sd">            grid : bool, optional</span>
+<span class="sd">                Whether to display a grid on the plot (default is False).</span>
+<span class="sd">            xmin : int, optional</span>
+<span class="sd">                The minimum intensity value on the x-axis (default is 0).</span>
+<span class="sd">            xmax : int, optional</span>
+<span class="sd">                The maximum intensity value on the x-axis (default is 256).</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            None</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="c1"># Calculate the histogram</span>
+            <span class="n">hist</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">channel_data</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[</span><span class="mi">256</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">])</span>
+
+            <span class="c1"># Plot the histogram</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hist</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Mono Chromatic Histogram&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Intensity Value&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Pixel Count&#39;</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">xmin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">xmin</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">xmax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">xmax</span> <span class="o">=</span> <span class="mi">256</span>
+            <span class="c1"># Set x-axis limits if valid xmin and xmax are provided</span>
+            <span class="k">if</span> <span class="n">xmin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">xmax</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">xmin</span> <span class="o">&lt;</span> <span class="n">xmax</span> <span class="o">&lt;=</span> <span class="mi">256</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">])</span>
+
+            <span class="c1"># Add grid if requested</span>
+            <span class="k">if</span> <span class="n">grid</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="LabImageProcessing.ImageVisualization.plot_image"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_image">[docs]</a>        <span class="k">def</span> <span class="nf">plot_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span> 
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Displays the given image using Matplotlib.</span>
+
+<span class="sd">            This method checks if the image is grayscale and, if so, converts it to RGB</span>
+<span class="sd">            format before displaying. It uses Matplotlib to plot the image with axis </span>
+<span class="sd">            labels and ticks turned off.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            image : ndarray</span>
+<span class="sd">                The image to be displayed.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            None</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="c1"># Check if the image is grayscale</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="c1"># Convert grayscale image to RGB format</span>
+                <span class="n">image_rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_GRAY2RGB</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># If it&#39;s already in RGB format, keep it as is</span>
+                <span class="n">image_rgb</span> <span class="o">=</span> <span class="n">image</span>
+
+            <span class="c1"># Display the image using Matplotlib</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image_rgb</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>  <span class="c1"># Turn off axis labels and ticks</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+        
+<div class="viewcode-block" id="LabImageProcessing.ImageVisualization.show_image"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.show_image">[docs]</a>        <span class="k">def</span> <span class="nf">show_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Image&quot;</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Displays the given or current image using OpenCV.</span>
+
+<span class="sd">            If no image is provided, the method uses the current image stored in the class.</span>
+<span class="sd">            The image is displayed in a window with the specified title. The window remains </span>
+<span class="sd">            open until the &#39;Q&#39; key is pressed.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            image : ndarray, optional</span>
+<span class="sd">                The image to be displayed. If None, the current image is used (default is None).</span>
+<span class="sd">            title : str, optional</span>
+<span class="sd">                The title of the window in which the image is displayed (default is &quot;Image&quot;).</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            None</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span>
+            <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2"> (Press Q to close this)&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+            <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="LabImageProcessing.ImageVisualization.show_image_with_contour"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.show_image_with_contour">[docs]</a>        <span class="k">def</span> <span class="nf">show_image_with_contour</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">contour</span><span class="p">):</span>
+<span class="w">                </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                Displays the given image with a specified contour using OpenCV.</span>
+
+<span class="sd">                This method first calls `get_image_with_contour` to apply the contour to the image</span>
+<span class="sd">                and then displays the result. The window title indicates that it is showing an </span>
+<span class="sd">                image with a contour.</span>
+
+<span class="sd">                Parameters</span>
+<span class="sd">                ----------</span>
+<span class="sd">                image : ndarray</span>
+<span class="sd">                    The image to which the contour will be applied.</span>
+<span class="sd">                contour : ndarray</span>
+<span class="sd">                    The contour to be applied to the image.</span>
+
+<span class="sd">                Returns</span>
+<span class="sd">                -------</span>
+<span class="sd">                None</span>
+<span class="sd">                &quot;&quot;&quot;</span>
+                <span class="c1"># Merge the channels back</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">show_image</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_image_with_contour</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">contour</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Image with Contour&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LabImageProcessing.ImageVisualization.get_image_with_contour"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.get_image_with_contour">[docs]</a>        <span class="k">def</span> <span class="nf">get_image_with_contour</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">contour</span><span class="p">):</span>
+<span class="w">                </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                Returns a copy of the image with the specified contour applied.</span>
+
+<span class="sd">                The contour is applied by setting the pixels within the contour to a specific </span>
+<span class="sd">                color (in this case, red). This method splits the image into its color channels, </span>
+<span class="sd">                applies the contour, and then merges the channels back.</span>
+
+<span class="sd">                Parameters</span>
+<span class="sd">                ----------</span>
+<span class="sd">                image : ndarray</span>
+<span class="sd">                    The original image.</span>
+<span class="sd">                contour : ndarray</span>
+<span class="sd">                    The contour mask to be applied.</span>
+
+<span class="sd">                Returns</span>
+<span class="sd">                -------</span>
+<span class="sd">                ndarray</span>
+<span class="sd">                    The image with the contour applied.</span>
+<span class="sd">                &quot;&quot;&quot;</span>
+                <span class="n">original_image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="c1"># Split the original image into Blue, Green, and Red channels</span>
+                <span class="n">b_channel</span><span class="p">,</span> <span class="n">g_channel</span><span class="p">,</span> <span class="n">r_channel</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">original_image</span><span class="p">)</span>
+
+                
+                <span class="c1"># Assuming b_channel is the blue channel of your image and contour is your mask</span>
+                <span class="n">b_channel</span><span class="p">[</span><span class="n">contour</span> <span class="o">==</span> <span class="mi">255</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">g_channel</span><span class="p">[</span><span class="n">contour</span> <span class="o">==</span> <span class="mi">255</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">r_channel</span><span class="p">[</span><span class="n">contour</span> <span class="o">==</span> <span class="mi">255</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span>
+
+                <span class="c1"># Merge the channels back</span>
+                <span class="k">return</span> <span class="n">cv2</span><span class="o">.</span><span class="n">merge</span><span class="p">([</span><span class="n">b_channel</span><span class="p">,</span> <span class="n">g_channel</span><span class="p">,</span> <span class="n">r_channel</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="LabImageProcessing.ImageVisualization.plot_peak_bounds"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageVisualization.plot_peak_bounds">[docs]</a>        <span class="k">def</span> <span class="nf">plot_peak_bounds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Plots the histogram of a given channel and highlights the main peak bounds.</span>
+
+<span class="sd">            This method calculates the histogram of the specified channel, identifies </span>
+<span class="sd">            the main peak, and determines its lower and upper bounds. It then plots </span>
+<span class="sd">            the histogram and marks the peak bounds with vertical lines.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            channel : ndarray</span>
+<span class="sd">                The channel data (e.g., a color channel from an image) for which the </span>
+<span class="sd">                histogram and peak bounds are to be plotted.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            None</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="c1"># Calculate the histogram of the channel</span>
+            <span class="n">histogram</span><span class="p">,</span> <span class="n">bin_edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">))</span>
+
+            <span class="c1"># Find the bin with the maximum frequency (main peak)</span>
+            <span class="n">main_peak_bin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">histogram</span><span class="p">)</span>
+            <span class="n">main_peak_value</span> <span class="o">=</span> <span class="n">bin_edges</span><span class="p">[</span><span class="n">main_peak_bin</span><span class="p">]</span>
+
+            <span class="c1"># Determine the lower and upper bounds of the main peak</span>
+            <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">main_peak_value</span>
+            <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">main_peak_value</span>
+
+            <span class="c1"># Move left to find the lower bound</span>
+            <span class="k">while</span> <span class="n">lower_bound</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">histogram</span><span class="p">[</span><span class="n">main_peak_bin</span><span class="p">]</span> <span class="o">==</span> <span class="n">histogram</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">lower_bound</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]:</span>
+                <span class="n">lower_bound</span> <span class="o">-=</span> <span class="mi">1</span>
+
+            <span class="c1"># Move right to find the upper bound</span>
+            <span class="k">while</span> <span class="n">upper_bound</span> <span class="o">&lt;</span> <span class="mi">255</span> <span class="ow">and</span> <span class="n">histogram</span><span class="p">[</span><span class="n">main_peak_bin</span><span class="p">]</span> <span class="o">==</span> <span class="n">histogram</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">upper_bound</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                <span class="n">upper_bound</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="c1"># Plot the histogram with lines representing the bounds</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">lower_bound</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lower Bound&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">upper_bound</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Upper Bound&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histogram with Peak Bounds&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Hue Value&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+            <span class="c1"># Print the lower and upper bound values</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Lower Bound: </span><span class="si">{</span><span class="n">lower_bound</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Upper Bound: </span><span class="si">{</span><span class="n">upper_bound</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="LabImageProcessing.ImageTools"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageTools">[docs]</a>    <span class="k">class</span> <span class="nc">ImageTools</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A class for performing various image processing operations.</span>
+
+<span class="sd">        This class offers functionality to extract specific color channels, resize images,</span>
+<span class="sd">        and define a region of interest (ROI) on an image. The ROI can be interactively </span>
+<span class="sd">        selected by the user using mouse events.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        image : ndarray</span>
+<span class="sd">            The image on which processing operations will be performed.</span>
+
+<span class="sd">        Attributes</span>
+<span class="sd">        ----------</span>
+<span class="sd">        original_image : ndarray</span>
+<span class="sd">            A copy of the original image.</span>
+<span class="sd">        roi : tuple or None</span>
+<span class="sd">            The coordinates of the defined region of interest (ROI), if defined.</span>
+
+<span class="sd">        Methods</span>
+<span class="sd">        -------</span>
+<span class="sd">        get_channel(channel_name)</span>
+<span class="sd">            Extracts and returns a specific channel from the image.</span>
+<span class="sd">        resize_image(new_width)</span>
+<span class="sd">            Resizes the image to a new width while maintaining aspect ratio.</span>
+<span class="sd">        get_image_shape()</span>
+<span class="sd">            Returns the shape of the image (height, width).</span>
+<span class="sd">        define_image_roi(channel)</span>
+<span class="sd">            Interactively defines a region of interest (ROI) on the given channel.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">original_image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">roi</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="LabImageProcessing.ImageTools.get_channel"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageTools.get_channel">[docs]</a>        <span class="k">def</span> <span class="nf">get_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_name</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Extracts and returns a specific color or HSL channel from the image.</span>
+
+<span class="sd">            This method allows extraction of individual color channels (Blue, Green, Red) </span>
+<span class="sd">            or HSL (Hue, Saturation, Luminance) channels from the image. The channel </span>
+<span class="sd">            to be extracted is specified by the channel name.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            channel_name : str</span>
+<span class="sd">                Name of the channel to be extracted. Valid options are &quot;blue&quot;, &quot;green&quot;, </span>
+<span class="sd">                &quot;red&quot;, &quot;hue&quot;, &quot;saturation&quot;, and &quot;luminance&quot;.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            ndarray</span>
+<span class="sd">                The extracted channel as a single-channel image.</span>
+
+<span class="sd">            Raises</span>
+<span class="sd">            ------</span>
+<span class="sd">            ValueError</span>
+<span class="sd">                If an invalid channel name is provided.</span>
+
+<span class="sd">            Notes</span>
+<span class="sd">            -----</span>
+<span class="sd">            - The channel name is not case-sensitive.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="n">channel_name</span> <span class="o">=</span> <span class="n">channel_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">channel_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">]:</span>
+                <span class="n">channel_index</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;blue&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}[</span><span class="n">channel_name</span><span class="p">]</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">[:,:,</span><span class="n">channel_index</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">channel_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;hue&quot;</span><span class="p">,</span> <span class="s2">&quot;saturation&quot;</span><span class="p">,</span> <span class="s2">&quot;luminance&quot;</span><span class="p">]:</span>
+                <span class="n">hsl_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2HLS</span><span class="p">)</span>
+                <span class="n">channel_index</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;hue&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;saturation&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;luminance&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}[</span><span class="n">channel_name</span><span class="p">]</span>
+                <span class="k">return</span> <span class="n">hsl_image</span><span class="p">[:,:,</span><span class="n">channel_index</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid channel name&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LabImageProcessing.ImageTools.resize_image"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageTools.resize_image">[docs]</a>        <span class="k">def</span> <span class="nf">resize_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_width</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Resizes the image to a new width while maintaining the aspect ratio.</span>
+
+<span class="sd">            This method resizes the image to the specified width. The height is </span>
+<span class="sd">            automatically adjusted to maintain the original aspect ratio of the image.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            new_width : int</span>
+<span class="sd">                The new width to which the image will be resized.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            ndarray</span>
+<span class="sd">                The resized image.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">aspect_ratio</span> <span class="o">=</span> <span class="n">height</span> <span class="o">/</span> <span class="n">width</span>
+            <span class="n">new_height</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">new_width</span> <span class="o">*</span> <span class="n">aspect_ratio</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="n">new_width</span><span class="p">,</span> <span class="n">new_height</span><span class="p">))</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span></div>
+
+<div class="viewcode-block" id="LabImageProcessing.ImageTools.get_image_shape"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageTools.get_image_shape">[docs]</a>        <span class="k">def</span> <span class="nf">get_image_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns the shape (height, width) of the image.</span>
+
+<span class="sd">            This method retrieves the dimensions of the image, specifically its height </span>
+<span class="sd">            and width, and returns them.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            tuple</span>
+<span class="sd">                A tuple containing the height and width of the image.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># Returns (height, width)</span></div>
+
+
+<div class="viewcode-block" id="LabImageProcessing.ImageTools.define_image_roi"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.ImageTools.define_image_roi">[docs]</a>        <span class="k">def</span> <span class="nf">define_image_roi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Interactively defines a region of interest (ROI) on the given channel.</span>
+
+<span class="sd">            This method allows the user to select a rectangular ROI on the provided</span>
+<span class="sd">            image channel. The selection is done using mouse events: clicking and </span>
+<span class="sd">            dragging to define the rectangle, and releasing to finalize it. The </span>
+<span class="sd">            coordinates of the defined ROI are stored.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            channel : ndarray</span>
+<span class="sd">                The single-channel image (e.g., a color or grayscale channel) on which </span>
+<span class="sd">                the ROI is to be defined.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            tuple</span>
+<span class="sd">                A tuple containing the cropped ROI and the coordinates of the ROI </span>
+<span class="sd">                in the format (x1, y1, x2, y2).</span>
+
+<span class="sd">            Notes</span>
+<span class="sd">            -----</span>
+<span class="sd">            - Click and drag to start drawing the rectangle.</span>
+<span class="sd">            - Release the click to finalize the rectangle.</span>
+<span class="sd">            - The ROI is defined by the starting and ending coordinates of the rectangle.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">if</span> <span class="n">channel</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Could not read the channel.&quot;</span><span class="p">)</span>
+                <span class="k">return</span>
+
+            <span class="n">roi</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Local variable for the ROI</span>
+            <span class="n">drawing</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Flag to indicate when the mouse is being dragged</span>
+
+            <span class="c1"># Convert the single-channel image to a 3-channel image for drawing</span>
+            <span class="n">display_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_GRAY2BGR</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">select_roi</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+                <span class="k">nonlocal</span> <span class="n">roi</span><span class="p">,</span> <span class="n">display_image</span><span class="p">,</span> <span class="n">drawing</span>
+
+                <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="n">cv2</span><span class="o">.</span><span class="n">EVENT_LBUTTONDOWN</span><span class="p">:</span>
+                    <span class="n">roi</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)]</span>  <span class="c1"># Record the starting point on the first click</span>
+                    <span class="n">drawing</span> <span class="o">=</span> <span class="kc">True</span>
+
+                <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="n">cv2</span><span class="o">.</span><span class="n">EVENT_MOUSEMOVE</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">drawing</span><span class="p">:</span>
+                        <span class="c1"># Update the display image with the rectangle</span>
+                        <span class="n">temp_image</span> <span class="o">=</span> <span class="n">display_image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                        <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">temp_image</span><span class="p">,</span> <span class="n">roi</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+                        <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;Select ROI&#39;</span><span class="p">,</span> <span class="n">temp_image</span><span class="p">)</span>
+
+                <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="n">cv2</span><span class="o">.</span><span class="n">EVENT_LBUTTONUP</span><span class="p">:</span>
+                    <span class="n">drawing</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="n">roi</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>  <span class="c1"># Record the ending point on the second click</span>
+
+                    <span class="c1"># Draw the final rectangle on the display image</span>
+                    <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">display_image</span><span class="p">,</span> <span class="n">roi</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">roi</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+                    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;Select ROI&#39;</span><span class="p">,</span> <span class="n">display_image</span><span class="p">)</span>
+
+            <span class="c1"># Create a window and set a mouse callback</span>
+            <span class="n">cv2</span><span class="o">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="s1">&#39;Select ROI&#39;</span><span class="p">)</span>
+            <span class="n">cv2</span><span class="o">.</span><span class="n">setMouseCallback</span><span class="p">(</span><span class="s1">&#39;Select ROI&#39;</span><span class="p">,</span> <span class="n">select_roi</span><span class="p">)</span>
+
+            <span class="c1"># Show the channel and wait until the user selects the ROI</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">drawing</span><span class="p">:</span>  <span class="c1"># Update the display only when not drawing</span>
+                    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;Select ROI&#39;</span><span class="p">,</span> <span class="n">display_image</span><span class="p">)</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">roi</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># Two points (one rectangle) have been selected</span>
+                    <span class="k">break</span>
+
+            <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+
+            <span class="c1"># Crop the selected ROI and calculate its histogram</span>
+            <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">roi</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">roi</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">roi</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">roi</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">roi_cropped</span> <span class="o">=</span> <span class="n">channel</span><span class="p">[</span><span class="n">y1</span><span class="p">:</span><span class="n">y2</span><span class="p">,</span> <span class="n">x1</span><span class="p">:</span><span class="n">x2</span><span class="p">]</span>
+            <span class="c1"># Save the roi</span>
+            <span class="n">roi_coordinates</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">roi_cropped</span><span class="p">,</span> <span class="n">roi_coordinates</span></div></div>
+        
+<div class="viewcode-block" id="LabImageProcessing.MorphologicalManipulation"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation">[docs]</a>    <span class="k">class</span> <span class="nc">MorphologicalManipulation</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A class for performing morphological operations on images.</span>
+
+<span class="sd">        This class allows the application of morphological operations like erosion and </span>
+<span class="sd">        dilation on images. A structuring element (kernel) must be set before performing </span>
+<span class="sd">        these operations. The class also provides a method to extract mask contours from </span>
+<span class="sd">        an image.</span>
+
+<span class="sd">        Attributes</span>
+<span class="sd">        ----------</span>
+<span class="sd">        image : ndarray</span>
+<span class="sd">            The original image for manipulation.</span>
+<span class="sd">        kernel : ndarray</span>
+<span class="sd">            The structuring element used for morphological operations.</span>
+<span class="sd">        manipulated_image : ndarray</span>
+<span class="sd">            The image after applying morphological operations.</span>
+
+<span class="sd">        Methods</span>
+<span class="sd">        -------</span>
+<span class="sd">        set_kernel(size)</span>
+<span class="sd">            Sets the structuring element for morphological operations.</span>
+<span class="sd">        erode(iterations=1)</span>
+<span class="sd">            Applies erosion to the image.</span>
+<span class="sd">        dilate(iterations=1)</span>
+<span class="sd">            Applies dilation to the image.</span>
+<span class="sd">        get_image()</span>
+<span class="sd">            Returns the manipulated image.</span>
+<span class="sd">        get_mask_contour()</span>
+<span class="sd">            Extracts and returns contours from the image.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kernel</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">manipulated_image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<div class="viewcode-block" id="LabImageProcessing.MorphologicalManipulation.set_kernel"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation.set_kernel">[docs]</a>        <span class="k">def</span> <span class="nf">set_kernel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Sets the structuring element (kernel) for morphological operations.</span>
+
+<span class="sd">            This method initializes the kernel used for erosion and dilation operations. </span>
+<span class="sd">            The kernel is a square matrix of the specified size.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            size : int</span>
+<span class="sd">                The size of the structuring element. Represents both the width and height </span>
+<span class="sd">                of the square matrix.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            None</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kernel</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getStructuringElement</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_RECT</span><span class="p">,</span> <span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="LabImageProcessing.MorphologicalManipulation.erode"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation.erode">[docs]</a>        <span class="k">def</span> <span class="nf">erode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Applies erosion to the manipulated image using the set kernel.</span>
+
+<span class="sd">            This method erodes the image, which typically reduces the size of the </span>
+<span class="sd">            foreground objects. A kernel must be set before calling this method.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            iterations : int, optional</span>
+<span class="sd">                The number of times the erosion is applied (default is 1).</span>
+
+<span class="sd">            Raises</span>
+<span class="sd">            ------</span>
+<span class="sd">            ValueError</span>
+<span class="sd">                If the kernel is not set prior to calling this method.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            None</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">manipulated_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">erode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">manipulated_image</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="n">iterations</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Kernel not set&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LabImageProcessing.MorphologicalManipulation.dilate"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation.dilate">[docs]</a>        <span class="k">def</span> <span class="nf">dilate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Applies dilation to the manipulated image using the set kernel.</span>
+
+<span class="sd">            This method dilates the image, typically increasing the size of foreground </span>
+<span class="sd">            objects. A kernel must be set before calling this method.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            iterations : int, optional</span>
+<span class="sd">                The number of times the dilation is applied (default is 1).</span>
+
+<span class="sd">            Raises</span>
+<span class="sd">            ------</span>
+<span class="sd">            ValueError</span>
+<span class="sd">                If the kernel is not set prior to calling this method.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            None</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">manipulated_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">dilate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">manipulated_image</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="n">iterations</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Kernel not set&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LabImageProcessing.MorphologicalManipulation.get_image"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation.get_image">[docs]</a>        <span class="k">def</span> <span class="nf">get_image</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns the current state of the manipulated image.</span>
+
+<span class="sd">            This method retrieves the image as it is after applying morphological </span>
+<span class="sd">            operations like erosion or dilation.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            ndarray</span>
+<span class="sd">                The manipulated image.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">manipulated_image</span></div>
+        
+<div class="viewcode-block" id="LabImageProcessing.MorphologicalManipulation.get_mask_contour"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.MorphologicalManipulation.get_mask_contour">[docs]</a>        <span class="k">def</span> <span class="nf">get_mask_contour</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Extracts and returns the contours from the manipulated image.</span>
+
+<span class="sd">            This method first dilates the image to enhance the contours. It then performs </span>
+<span class="sd">            bitwise operations to isolate and return only the contours. The original state </span>
+<span class="sd">            of the manipulated image is preserved.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            ndarray</span>
+<span class="sd">                The image with only the contours extracted.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="c1"># Get the actual mask</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_image</span><span class="p">()</span>
+            <span class="n">mask_dilated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_image</span><span class="p">()</span>
+            <span class="c1"># Inverse the mask</span>
+            <span class="n">inverse_mask</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_not</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+
+            <span class="c1"># Dilate the mask </span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dilate</span><span class="p">()</span>
+            <span class="n">mask_dilated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_image</span><span class="p">()</span>
+            <span class="c1"># Perform a bitwise AND between mask1 and the inverse of mask2</span>
+            <span class="n">result_mask</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">(</span><span class="n">mask_dilated</span><span class="p">,</span> <span class="n">inverse_mask</span><span class="p">)</span>
+            <span class="c1"># BAckup the old mask before dilatation</span>
+            <span class="n">backup_image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">manipulated_image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">manipulated_image</span> <span class="o">=</span> <span class="n">result_mask</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dilate</span><span class="p">()</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_image</span><span class="p">()</span>
+            <span class="c1"># Restore the backuped image</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">manipulated_image</span> <span class="o">=</span> <span class="n">backup_image</span>
+            <span class="c1"># Keep only closed shape</span>
+            <span class="k">return</span> <span class="n">result</span></div></div>
+
+
+<div class="viewcode-block" id="LabImageProcessing.Thresholding"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.Thresholding">[docs]</a>    <span class="k">class</span> <span class="nc">Thresholding</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A class for applying various thresholding techniques on image channels.</span>
+
+<span class="sd">        This class includes methods for standard and adaptive thresholding, as well as</span>
+<span class="sd">        utility functions for applying masks to images. It allows for flexible control</span>
+<span class="sd">        over thresholding parameters and mask application.</span>
+
+<span class="sd">        Methods</span>
+<span class="sd">        -------</span>
+<span class="sd">        apply_threshold(channel, threshold_type=&quot;standard&quot;, thresh_value=127, lower_bound=0, upper_bound=255)</span>
+<span class="sd">            Applies the specified type of thresholding to an image channel.</span>
+<span class="sd">        get_full_mask(roi_coordinates, original_shape, thresholded_roi)</span>
+<span class="sd">            Creates and returns a full mask based on the thresholded ROI.</span>
+<span class="sd">        apply_mask_on_image(original_image, full_mask)</span>
+<span class="sd">            Applies a mask to the original image and returns the masked image.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">pass</span>
+
+<div class="viewcode-block" id="LabImageProcessing.Thresholding.apply_threshold"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.Thresholding.apply_threshold">[docs]</a>        <span class="k">def</span> <span class="nf">apply_threshold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">threshold_type</span><span class="o">=</span><span class="s2">&quot;standard&quot;</span><span class="p">,</span> <span class="n">thresh_value</span><span class="o">=</span><span class="mi">127</span><span class="p">,</span> <span class="n">lower_bound</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper_bound</span><span class="o">=</span><span class="mi">255</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Applies a specified type of thresholding to an image channel.</span>
+
+<span class="sd">            This method supports various thresholding types including standard, Otsu&#39;s, </span>
+<span class="sd">            and manual. It can work on grayscale or color channels (which are converted </span>
+<span class="sd">            to grayscale internally).</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            channel : ndarray</span>
+<span class="sd">                The image channel to which the threshold will be applied.</span>
+<span class="sd">            threshold_type : str, optional</span>
+<span class="sd">                The type of thresholding to apply. Options are &quot;standard&quot;, &quot;otsu&quot;, </span>
+<span class="sd">                and &quot;manual&quot; (default is &quot;standard&quot;).</span>
+<span class="sd">            thresh_value : int, optional</span>
+<span class="sd">                The threshold value used in standard thresholding (default is 127).</span>
+<span class="sd">            lower_bound : int, optional</span>
+<span class="sd">                The lower bound for manual thresholding (default is 0).</span>
+<span class="sd">            upper_bound : int, optional</span>
+<span class="sd">                The upper bound for manual thresholding (default is 255).</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            ndarray</span>
+<span class="sd">                The thresholded image channel.</span>
+
+<span class="sd">            Raises</span>
+<span class="sd">            ------</span>
+<span class="sd">            ValueError</span>
+<span class="sd">                If no image channel is loaded or an invalid threshold type is specified.</span>
+
+<span class="sd">            Notes</span>
+<span class="sd">            -----</span>
+<span class="sd">            - If the image channel is colored, it will be converted to grayscale.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">if</span> <span class="n">channel</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No image loaded&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Convert to grayscale if the image is colored</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">channel</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">channel_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">channel_image</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">threshold_type</span> <span class="o">==</span> <span class="s2">&quot;otsu&quot;</span><span class="p">:</span>
+                <span class="n">_</span><span class="p">,</span> <span class="n">thresh_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">channel_image</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span> <span class="o">+</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_OTSU</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">threshold_type</span> <span class="o">==</span> <span class="s2">&quot;standard&quot;</span><span class="p">:</span>
+                <span class="n">_</span><span class="p">,</span> <span class="n">thresh_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">channel_image</span><span class="p">,</span> <span class="n">thresh_value</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">threshold_type</span> <span class="o">==</span> <span class="s2">&quot;manual&quot;</span><span class="p">:</span>
+                <span class="n">thresh_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">inRange</span><span class="p">(</span><span class="n">channel_image</span><span class="p">,</span> <span class="n">lower_bound</span><span class="p">,</span> <span class="n">upper_bound</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid threshold type&quot;</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">thresh_image</span></div>
+        
+<div class="viewcode-block" id="LabImageProcessing.Thresholding.get_full_mask"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.Thresholding.get_full_mask">[docs]</a>        <span class="k">def</span> <span class="nf">get_full_mask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roi_coordinates</span><span class="p">,</span> <span class="n">original_shape</span><span class="p">,</span> <span class="n">thresholded_roi</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Creates and returns a full mask from a thresholded region of interest (ROI).</span>
+
+<span class="sd">            This method places the thresholded ROI on a full mask the size of the original </span>
+<span class="sd">            image, effectively creating a mask that can be applied to the entire image.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            roi_coordinates : tuple</span>
+<span class="sd">                The coordinates of the ROI in the format (x1, y1, x2, y2).</span>
+<span class="sd">            original_shape : ndarray</span>
+<span class="sd">                The original shape of the image to match the mask size.</span>
+<span class="sd">            thresholded_roi : ndarray</span>
+<span class="sd">                The thresholded region of interest.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            ndarray</span>
+<span class="sd">                The full mask with the thresholded ROI.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="c1"># Get the shape of the originalk image</span>
+            <span class="n">mask_shape</span> <span class="o">=</span> <span class="n">original_shape</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> 
+            <span class="c1"># Create a mask with the same dimensions as the original image</span>
+            <span class="n">full_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mask_shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+            <span class="c1"># Extract coordinates</span>
+            <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">roi_coordinates</span>
+
+            <span class="c1"># Place the thresholded ROI in the full mask</span>
+            <span class="n">full_mask</span><span class="p">[</span><span class="n">y1</span><span class="p">:</span><span class="n">y2</span><span class="p">,</span> <span class="n">x1</span><span class="p">:</span><span class="n">x2</span><span class="p">]</span> <span class="o">=</span> <span class="n">thresholded_roi</span>
+
+            <span class="k">return</span> <span class="n">full_mask</span></div>
+        
+<div class="viewcode-block" id="LabImageProcessing.Thresholding.apply_mask_on_image"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.Thresholding.apply_mask_on_image">[docs]</a>        <span class="k">def</span> <span class="nf">apply_mask_on_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original_image</span><span class="p">,</span> <span class="n">full_mask</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Applies a binary mask to an image, returning the masked image.</span>
+
+<span class="sd">            This method applies a full mask to the original image, masking out areas </span>
+<span class="sd">            outside the mask. It ensures the mask is binary before application.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            original_image : ndarray</span>
+<span class="sd">                The original image to which the mask will be applied.</span>
+<span class="sd">            full_mask : ndarray</span>
+<span class="sd">                The binary mask to be applied to the original image.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            ndarray</span>
+<span class="sd">                The original image with the mask applied.</span>
+
+<span class="sd">            Raises</span>
+<span class="sd">            ------</span>
+<span class="sd">            ValueError</span>
+<span class="sd">                If either the original image or the mask is not provided.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">if</span> <span class="n">original_image</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">full_mask</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Image or mask is not provided&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Ensure the mask is binary</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">binary_mask</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">full_mask</span><span class="p">,</span> <span class="mi">127</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
+
+            <span class="c1"># Apply the mask</span>
+            <span class="n">masked_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">(</span><span class="n">original_image</span><span class="p">,</span> <span class="n">original_image</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">binary_mask</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="n">masked_image</span></div></div>
+        
+            
+<div class="viewcode-block" id="LabImageProcessing.Examples"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.Examples">[docs]</a>    <span class="k">class</span> <span class="nc">Examples</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A class for demonstrating example use cases of plot and image vizualisation. (Only Demo)</span>
+
+<span class="sd">        This class is designed to showcase practical implementations of the techniques and tools</span>
+<span class="sd">        available in the `LabImageProcessing` package. </span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">pass</span>
+<div class="viewcode-block" id="LabImageProcessing.Examples.create_sinus_function"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.Examples.create_sinus_function">[docs]</a>        <span class="k">def</span> <span class="nf">create_sinus_function</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Generates a sinusoidal function.</span>
+
+<span class="sd">            This method creates and returns a sine wave function based on a range of </span>
+<span class="sd">            values from 0 to 10.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            ndarray</span>
+<span class="sd">                The sine wave values corresponding to the x values.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="LabImageProcessing.Examples.plot_function"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.Examples.plot_function">[docs]</a>        <span class="k">def</span> <span class="nf">plot_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Plots a given mathematical function.</span>
+
+<span class="sd">            This method takes a set of y-values corresponding to a function and plots </span>
+<span class="sd">            them against a linearly spaced x-axis, creating a visual representation of </span>
+<span class="sd">            the function.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            function : ndarray</span>
+<span class="sd">                The y-values of the function to be plotted.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            None</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="c1"># Sample data</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">function</span>
+
+            <span class="c1"># Creating the plot</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sine Wave&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simple Plot Example&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;X-axis&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Y-axis&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="c1"># Display the plot</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="LabImageProcessing.Examples.show_example_image"><a class="viewcode-back" href="../../OpenCvBinding.html#OpenCvBinding.LabImageProcessing.LabImageProcessing.Examples.show_example_image">[docs]</a>        <span class="k">def</span> <span class="nf">show_example_image</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Create and display an example image with OpenCV.</span>
+
+<span class="sd">            This function generates an image with a dark blue background and displays white text </span>
+<span class="sd">            saying &quot;Example Image&quot;. It is primarily designed for demonstration purposes to showcase </span>
+<span class="sd">            basic OpenCV functionalities such as creating images, adding text, and handling window </span>
+<span class="sd">            events. The function creates a window titled &quot;Press &#39;Q&#39; to exit&quot;, which displays the image. </span>
+<span class="sd">            The window remains open until the user presses the &#39;Q&#39; key.</span>
+
+<span class="sd">            The image is created using a numpy array to define its dimensions and color. The text is </span>
+<span class="sd">            added to the image using OpenCV&#39;s `putText` function. The window handling is managed using </span>
+<span class="sd">            OpenCV&#39;s `imshow` and `waitKey` functions.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+
+            <span class="c1"># Image dimensions and color (dark blue background)</span>
+            <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">640</span><span class="p">,</span> <span class="mi">480</span>
+            <span class="n">blue_color</span> <span class="o">=</span> <span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">139</span><span class="p">)</span>  <span class="c1"># Dark blue in BGR format</span>
+
+            <span class="c1"># Create a blank image with the blue background</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+            <span class="n">image</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">blue_color</span>
+
+            <span class="c1"># Text settings</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Example Image&quot;</span>
+            <span class="n">font</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span>
+            <span class="n">font_scale</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">font_color</span> <span class="o">=</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>  <span class="c1"># White color</span>
+            <span class="n">thickness</span> <span class="o">=</span> <span class="mi">2</span>
+            <span class="n">text_size</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getTextSize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">font</span><span class="p">,</span> <span class="n">font_scale</span><span class="p">,</span> <span class="n">thickness</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">text_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">text_size</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">//</span> <span class="mi">2</span>
+            <span class="n">text_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">height</span> <span class="o">+</span> <span class="n">text_size</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">//</span> <span class="mi">2</span>
+
+            <span class="c1"># Put text on the image</span>
+            <span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="p">(</span><span class="n">text_x</span><span class="p">,</span> <span class="n">text_y</span><span class="p">),</span> <span class="n">font</span><span class="p">,</span> <span class="n">font_scale</span><span class="p">,</span> <span class="n">font_color</span><span class="p">,</span> <span class="n">thickness</span><span class="p">)</span>
+
+            <span class="c1"># Display the image in a window</span>
+            <span class="n">window_title</span> <span class="o">=</span> <span class="s2">&quot;Press &#39;Q&#39; to exit&quot;</span>
+            <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">window_title</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+
+            <span class="c1"># Wait for the &#39;Q&#39; key to be pressed to exit</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">):</span>
+                    <span class="k">break</span>
+
+            <span class="c1"># Destroy all OpenCV windows</span>
+            <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span></div></div></div>
+
+
+<span class="c1"># Usage Example</span>
+<span class="c1"># opener = LabImageProcessing.ImageOpener()</span>
+<span class="c1"># opener.open_image()</span>
+<span class="c1"># image = opener.get_image()</span>
+
+<span class="c1"># morph = LabImageProcessing.MorphologicalManipulation(image)</span>
+<span class="c1"># morph.set_kernel(5)</span>
+<span class="c1"># eroded_image = morph.erode(1)</span>
+
+<span class="c1"># tools = LabImageProcessing.ImageTools(image)</span>
+<span class="c1"># blue_channel = tools.get_channel(&quot;blue&quot;)</span>
+<span class="c1"># resized_image = tools.resize_image(300)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Augustin Fuchs.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
